@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\build",
+    "\\app\\build\\generated",
+    "\\app\\build\\generated\\res",
+    "\\app\\build\\generated\\res\\pngs",
+    "\\app\\build\\generated\\res\\pngs\\debug",
+    "\\app\\build\\outputs",
+    "\\app\\build\\outputs\\logs",
+    "\\app\\build\\outputs\\sdk-dependencies",
+    "\\app\\build\\outputs\\sdk-dependencies\\debug"
+  ],
+  "SelectedNode": "\\app\\build\\outputs\\sdk-dependencies\\debug\\sdkDependencies.txt",
+  "PreviewInSolutionExplorer": false
+}

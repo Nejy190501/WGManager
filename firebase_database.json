@@ -1,0 +1,396 @@
+{
+  "wgs": {
+    "wg_sunny_flat": {
+      "id": "wg_sunny_flat",
+      "name": "Sunny Flat",
+      "address": "Berliner Str. 42, Berlin",
+      "joinCode": "SUNNY"
+    },
+    "wg_mountain_view": {
+      "id": "wg_mountain_view",
+      "name": "Mountain View",
+      "address": "Alpenstr. 7, München",
+      "joinCode": "MOUNT"
+    }
+  },
+
+  "users": {
+    "user_max": {
+      "id": "user_max",
+      "wgId": "wg_sunny_flat",
+      "name": "Max",
+      "email": "user@wg.com",
+      "password": "1234",
+      "role": "USER",
+      "hasWG": true,
+      "points": 120,
+      "status": "ONLINE",
+      "isTwoFactorEnabled": false,
+      "bio": "",
+      "avatarEmoji": "😎",
+      "themeColor": "INDIGO",
+      "isDarkMode": false,
+      "language": "EN",
+      "notificationsEnabled": true
+    },
+    "user_anna": {
+      "id": "user_anna",
+      "wgId": "wg_sunny_flat",
+      "name": "Anna",
+      "email": "admin@wg.com",
+      "password": "1234",
+      "role": "ADMIN",
+      "hasWG": true,
+      "points": 95,
+      "status": "ONLINE",
+      "isTwoFactorEnabled": false,
+      "bio": "",
+      "avatarEmoji": "👩‍💼",
+      "themeColor": "INDIGO",
+      "isDarkMode": false,
+      "language": "EN",
+      "notificationsEnabled": true
+    },
+    "user_tom": {
+      "id": "user_tom",
+      "wgId": "wg_sunny_flat",
+      "name": "Tom",
+      "email": "tom@wg.com",
+      "password": "1234",
+      "role": "USER",
+      "hasWG": true,
+      "points": 40,
+      "status": "FOCUS",
+      "isTwoFactorEnabled": false,
+      "bio": "",
+      "avatarEmoji": "🧑‍💻",
+      "themeColor": "INDIGO",
+      "isDarkMode": false,
+      "language": "EN",
+      "notificationsEnabled": true
+    },
+    "user_superdev": {
+      "id": "user_superdev",
+      "wgId": "wg_sunny_flat",
+      "name": "SuperDev",
+      "email": "super@wg.com",
+      "password": "1234",
+      "role": "SUPER_ADMIN",
+      "hasWG": true,
+      "points": 999,
+      "status": "ONLINE",
+      "isTwoFactorEnabled": false,
+      "bio": "",
+      "avatarEmoji": "🦸",
+      "themeColor": "INDIGO",
+      "isDarkMode": false,
+      "language": "EN",
+      "notificationsEnabled": true
+    },
+    "user_new_guy": {
+      "id": "user_new_guy",
+      "wgId": "",
+      "name": "New Guy",
+      "email": "new@wg.com",
+      "password": "1234",
+      "role": "USER",
+      "hasWG": false,
+      "points": 0,
+      "status": "ONLINE",
+      "isTwoFactorEnabled": false,
+      "bio": "",
+      "avatarEmoji": "🐣",
+      "themeColor": "INDIGO",
+      "isDarkMode": false,
+      "language": "EN",
+      "notificationsEnabled": true
+    }
+  },
+
+  "shoppingItems": {
+    "shop_milk": {
+      "id": "shop_milk",
+      "name": "Milk",
+      "price": 1.2,
+      "addedBy": "Anna",
+      "boughtBy": "",
+      "status": "PENDING",
+      "date": "08.02.2026"
+    },
+    "shop_toilet_paper": {
+      "id": "shop_toilet_paper",
+      "name": "Toilet Paper",
+      "price": 4.5,
+      "addedBy": "Max",
+      "boughtBy": "",
+      "status": "PENDING",
+      "date": "08.02.2026"
+    },
+    "shop_pasta": {
+      "id": "shop_pasta",
+      "name": "Pasta",
+      "price": 0.99,
+      "addedBy": "Tom",
+      "boughtBy": "",
+      "status": "PENDING",
+      "date": "08.02.2026"
+    },
+    "shop_beer": {
+      "id": "shop_beer",
+      "name": "Beer",
+      "price": 3.5,
+      "addedBy": "Max",
+      "boughtBy": "Max",
+      "status": "BOUGHT",
+      "date": "08.02.2026"
+    }
+  },
+
+  "tasks": {
+    "task_clean_kitchen": {
+      "id": "task_clean_kitchen",
+      "title": "Clean Kitchen",
+      "assignedTo": "Max",
+      "completed": false,
+      "streak": 0
+    },
+    "task_take_out_trash": {
+      "id": "task_take_out_trash",
+      "title": "Take out Trash",
+      "assignedTo": "Anna",
+      "completed": false,
+      "streak": 0
+    },
+    "task_vacuum_living_room": {
+      "id": "task_vacuum_living_room",
+      "title": "Vacuum Living Room",
+      "assignedTo": "Tom",
+      "completed": false,
+      "streak": 0
+    },
+    "task_clean_bathroom": {
+      "id": "task_clean_bathroom",
+      "title": "Clean Bathroom",
+      "assignedTo": "Max",
+      "completed": false,
+      "streak": 0
+    }
+  },
+
+  "tickets": {
+    "ticket_complaint_1": {
+      "id": "ticket_complaint_1",
+      "type": "COMPLAINT",
+      "text": "Music too loud at night!",
+      "author": "Max",
+      "isSolved": false,
+      "pollOptions": [],
+      "pollVotes": {},
+      "date": "08.02.2026"
+    },
+    "ticket_kudos_1": {
+      "id": "ticket_kudos_1",
+      "type": "KUDOS",
+      "text": "Great dinner last night! 🍝",
+      "author": "Anna",
+      "isSolved": false,
+      "pollOptions": [],
+      "pollVotes": {},
+      "date": "08.02.2026"
+    },
+    "ticket_poll_1": {
+      "id": "ticket_poll_1",
+      "type": "POLL",
+      "text": "Movie night - which day?",
+      "author": "Tom",
+      "isSolved": false,
+      "pollOptions": ["Friday", "Saturday", "Sunday"],
+      "pollVotes": {},
+      "date": "08.02.2026"
+    }
+  },
+
+  "events": {
+    "event_wg_party": {
+      "id": "event_wg_party",
+      "title": "WG Party 🎉",
+      "date": "11.02.2026",
+      "type": "PARTY",
+      "emoji": "🎉",
+      "createdBy": "Anna",
+      "isRecurring": false
+    },
+    "event_quiet_hours": {
+      "id": "event_quiet_hours",
+      "title": "Quiet Hours",
+      "date": "16.02.2026",
+      "type": "QUIET",
+      "emoji": "🤫",
+      "createdBy": "Tom",
+      "isRecurring": false
+    },
+    "event_parents_visit": {
+      "id": "event_parents_visit",
+      "title": "Parents Visit",
+      "date": "18.02.2026",
+      "type": "VISIT",
+      "emoji": "👨‍👩‍👦",
+      "createdBy": "Max",
+      "isRecurring": false
+    }
+  },
+
+  "recipes": {
+    "recipe_spaghetti": {
+      "id": "recipe_spaghetti",
+      "name": "Spaghetti Bolognese",
+      "emoji": "🍝",
+      "difficulty": "Easy",
+      "timeMinutes": 30,
+      "ingredients": ["Spaghetti", "Ground Beef", "Tomato Sauce", "Onion", "Garlic"]
+    },
+    "recipe_chicken_curry": {
+      "id": "recipe_chicken_curry",
+      "name": "Chicken Curry",
+      "emoji": "🍛",
+      "difficulty": "Medium",
+      "timeMinutes": 45,
+      "ingredients": ["Chicken", "Curry Paste", "Coconut Milk", "Rice", "Peppers"]
+    },
+    "recipe_caesar_salad": {
+      "id": "recipe_caesar_salad",
+      "name": "Caesar Salad",
+      "emoji": "🥗",
+      "difficulty": "Easy",
+      "timeMinutes": 15,
+      "ingredients": ["Lettuce", "Croutons", "Parmesan", "Caesar Dressing"]
+    },
+    "recipe_pizza": {
+      "id": "recipe_pizza",
+      "name": "Pizza Margherita",
+      "emoji": "🍕",
+      "difficulty": "Medium",
+      "timeMinutes": 40,
+      "ingredients": ["Pizza Dough", "Mozzarella", "Tomato Sauce", "Basil"]
+    },
+    "recipe_pancakes": {
+      "id": "recipe_pancakes",
+      "name": "Pancakes",
+      "emoji": "🥞",
+      "difficulty": "Easy",
+      "timeMinutes": 20,
+      "ingredients": ["Flour", "Eggs", "Milk", "Sugar", "Butter"]
+    }
+  },
+
+  "mealPlan": {
+    "mon": {
+      "day": "Mon",
+      "recipeId": "recipe_spaghetti",
+      "cook": "Max"
+    },
+    "tue": {
+      "day": "Tue",
+      "recipeId": "recipe_chicken_curry",
+      "cook": "Anna"
+    },
+    "wed": {
+      "day": "Wed",
+      "recipeId": "recipe_caesar_salad",
+      "cook": "Tom"
+    },
+    "thu": {
+      "day": "Thu",
+      "recipeId": null,
+      "cook": ""
+    },
+    "fri": {
+      "day": "Fri",
+      "recipeId": null,
+      "cook": ""
+    },
+    "sat": {
+      "day": "Sat",
+      "recipeId": null,
+      "cook": ""
+    },
+    "sun": {
+      "day": "Sun",
+      "recipeId": null,
+      "cook": ""
+    }
+  },
+
+  "vaultItems": {
+    "vault_wifi": {
+      "id": "vault_wifi",
+      "label": "WiFi Password",
+      "value": "SunnyFlat2024!",
+      "type": "WIFI",
+      "customIcon": "📶",
+      "isSecure": true
+    },
+    "vault_landlord": {
+      "id": "vault_landlord",
+      "label": "Landlord Phone",
+      "value": "+49 170 1234567",
+      "type": "PHONE",
+      "customIcon": "📞",
+      "isSecure": false
+    },
+    "vault_iban": {
+      "id": "vault_iban",
+      "label": "WG IBAN",
+      "value": "DE89 3704 0044 0532 0130 00",
+      "type": "IBAN",
+      "customIcon": "🏦",
+      "isSecure": true
+    },
+    "vault_door_code": {
+      "id": "vault_door_code",
+      "label": "Front Door Code",
+      "value": "4523#",
+      "type": "CODE",
+      "customIcon": "🚪",
+      "isSecure": true
+    }
+  },
+
+  "rewards": {
+    "reward_movie": {
+      "id": "reward_movie",
+      "emoji": "🎬",
+      "title": "Movie Night Pick",
+      "cost": 30,
+      "description": "Choose the next movie night film"
+    },
+    "reward_couch": {
+      "id": "reward_couch",
+      "emoji": "🛋️",
+      "title": "Couch Priority",
+      "cost": 50,
+      "description": "Best spot on the couch for a week"
+    },
+    "reward_pizza": {
+      "id": "reward_pizza",
+      "emoji": "🍕",
+      "title": "Free Pizza",
+      "cost": 80,
+      "description": "WG buys you a pizza"
+    },
+    "reward_skip_chores": {
+      "id": "reward_skip_chores",
+      "emoji": "🧹",
+      "title": "Skip Chores",
+      "cost": 100,
+      "description": "Skip one cleaning rotation"
+    },
+    "reward_crown": {
+      "id": "reward_crown",
+      "emoji": "👑",
+      "title": "King/Queen of WG",
+      "cost": 200,
+      "description": "Custom crown emoji for a week"
+    }
+  }
+}

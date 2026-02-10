@@ -1,0 +1,147 @@
+<resources>
+    <string name="app_name">WG Manager</string>
+    
+    <!-- General -->
+    <string name="refresh">Refresh</string>
+    <string name="back">Back</string>
+    <string name="loading">Loading…</string>
+    <string name="users">Users</string>
+    <string name="tasks">Tasks</string>
+    <string name="tickets">Tickets</string>
+    <string name="admin">Admin</string>
+    <string name="all_users">All Users</string>
+    <string name="users_count">%d users</string>
+    
+    <!-- System Panel -->
+    <string name="system_super_admin">Super Admin</string>
+    <string name="system_panel_title">System Panel</string>
+    <string name="system_overview">System Overview</string>
+    <string name="loading_system_data">Loading system data…</string>
+
+    <!-- Login / Main -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_subtitle">Sign in to continue managing your WG</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or_continue_with">Or continue with</string>
+    <string name="no_account">Don\'t have an account? </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="demo_hint">Demo: user@wg.com | admin@wg.com | 1234</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_with_apple">Sign in with Apple</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Passwort</string>
+    <string name="login_button">Login</string>
+    <string name="login_error_empty">Bitte Email + Passwort eingeben.</string>
+    <string name="login_error_wrong_password">Falsches Passwort! (Tipp: 1234)</string>
+    <string name="login_error_unknown_user">Benutzer unbekannt.</string>
+    <string name="login_demo_hint">Demo: user@wg.com | admin@wg.com | super@wg.com • Passwort: 1234</string>
+    <string name="login_title">Willkommen bei</string>
+    <string name="login_subtitle">WG Manager</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_shopping">🛒 Shopping</string>
+    <string name="dashboard_cleaning">🧹 Putzplan</string>
+    <string name="dashboard_crew">👥 Crew</string>
+    <string name="dashboard_tickets">📌 Tickets</string>
+    <string name="dashboard_analytics">📊 Analytics</string>
+    <string name="dashboard_wall_of_shame">🏆 Wall of Shame</string>
+    <string name="dashboard_profile">👤 Profil</string>
+    <string name="dashboard_system_panel">⚙️ System Panel</string>
+    <string name="dashboard_logout">Logout</string>
+    <string name="dashboard_open">Öffnen</string>
+
+    <!-- Cleaning -->
+    <string name="cleaning_title">🧹 Putzplan</string>
+    <string name="cleaning_subtitle">Erstelle Aufgaben, verteile sie an WG-Mitglieder und tracke DONE/OPEN.</string>
+    <string name="cleaning_week_view">📅 Wochenansicht öffnen</string>
+    <string name="cleaning_add_task_title">➕ Neue Aufgabe</string>
+    <string name="cleaning_task_hint">Aufgabe eingeben…</string>
+    <string name="cleaning_add_button">Hinzufügen</string>
+    <string name="cleaning_status_done">DONE</string>
+    <string name="cleaning_status_open">OPEN</string>
+    <string name="cleaning_unassigned">Unassigned</string>
+
+    <!-- Tickets -->
+    <string name="ticket_title">📌 Schwarzes Brett</string>
+    <string name="ticket_subtitle">Lob &amp; Kritik für das WG-Leben.</string>
+    <string name="ticket_add_title">➕ Neues Ticket</string>
+    <string name="ticket_hint">Was möchtest du sagen?</string>
+    <string name="ticket_kudos_checkbox">Das ist ein KUDOS ❤️</string>
+    <string name="ticket_add_button">Posten</string>
+    <string name="ticket_type_kudos">KUDOS ❤️</string>
+    <string name="ticket_type_complaint">COMPLAINT ⚠️</string>
+    <string name="ticket_status_solved">SOLVED ✅</string>
+    <string name="ticket_status_open">OPEN</string>
+    <string name="ticket_status_ok">OK</string>
+
+    <!-- Crew -->
+    <string name="crew_title">👥 Crew</string>
+    <string name="crew_subtitle">Alle WG-Mitglieder auf einen Blick.</string>
+
+    <!-- Profile -->
+    <string name="profile_title">👤 Mein Profil</string>
+    <string name="profile_status_hint">Status eingeben…</string>
+    <string name="profile_save">Speichern</string>
+
+    <!-- Shopping -->
+    <string name="shopping_title">🛒 Einkaufsliste</string>
+    <string name="shopping_item_hint">Artikel eingeben…</string>
+    <string name="shopping_price_hint">Preis (€)</string>
+    <string name="shopping_add_button">Hinzufügen</string>
+    <string name="shopping_back">Zurück</string>
+
+    <!-- Analytics -->
+    <string name="analytics_title">📊 WG Analytics</string>
+    <string name="analytics_tasks_section">🧹 Putzplan / Tasks</string>
+    <string name="analytics_done_tasks">Erledigte Tasks: %d</string>
+    <string name="analytics_open_tasks">Offene Tasks: %d</string>
+    <string name="analytics_tickets_section">📌 Tickets</string>
+    <string name="analytics_complaints">Complaints: %d</string>
+    <string name="analytics_solved_complaints">Gelöste Complaints: %d</string>
+    <string name="analytics_kudos">Kudos: %d</string>
+    <string name="analytics_shopping_section">🛒 Einkauf</string>
+    <string name="analytics_total_cost">Gesamtkosten: %.2f €</string>
+    <string name="analytics_shame_section">🏆 Wall of Shame</string>
+    <string name="analytics_worst_person">Top 1 (kritisch): %s</string>
+    <string name="analytics_export_pdf">📄 PDF Report exportieren</string>
+    <string name="analytics_pdf_hint">Hinweis: Die Datei wird App-intern gespeichert (kein Download-Permission-Problem).</string>
+    <string name="analytics_back">Zurück</string>
+
+    <!-- Wall of Shame -->
+    <string name="shame_title">🏆 Wall of Shame</string>
+    <string name="shame_back">Zurück</string>
+
+    <!-- WG Finder -->
+    <string name="wg_finder_title">🏠 WG Finder</string>
+    <string name="wg_finder_hint">Du bist aktuell in keiner WG. Wähle eine WG aus und sende eine Anfrage.</string>
+    <string name="wg_finder_selection_none">Keine WG ausgewählt.</string>
+    <string name="wg_finder_selection">Ausgewählt: %s</string>
+    <string name="wg_finder_send_request">Anfrage senden</string>
+    <string name="wg_finder_back">Zurück zum Login</string>
+
+    <!-- System Panel (German) -->
+    <string name="system_panel_refresh">Aktualisieren</string>
+    <string name="system_panel_back">Zurück</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="delete">Löschen</string>
+    <string name="details">Details</string>
+
+    <!-- Toasts -->
+    <string name="toast_no_wg">⚠️ Du bist in keiner WG. Bitte zuerst einer WG beitreten.</string>
+    <string name="toast_access_denied">⛔ Zugriff verweigert: Nur Super Admin!</string>
+    <string name="toast_profile_saved">✅ Profil gespeichert!</string>
+    <string name="toast_no_user_loaded">❌ Kein User geladen.</string>
+    <string name="toast_item_deleted">🗑 Item gelöscht ✅</string>
+    <string name="toast_ticket_deleted">🗑 Ticket gelöscht ✅</string>
+    <string name="toast_task_deleted">🗑 Task gelöscht ✅</string>
+</resources>

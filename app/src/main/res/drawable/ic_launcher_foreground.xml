@@ -1,0 +1,103 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Subtle green glow circle behind the house -->
+    <path
+        android:fillColor="#1510B981"
+        android:pathData="M54,50m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0" />
+
+    <!-- Roof -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M54,26 L28,50 L33,50 L54,31 L75,50 L80,50 Z" />
+
+    <!-- Chimney -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M66,32 L66,40 L72,34 L72,29 Q72,28 71,28 L67,28 Q66,28 66,29 Z" />
+
+    <!-- House body -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M34,50 L34,70 Q34,72 36,72 L50,72 L50,62 L58,62 L58,72 L72,72 Q74,72 74,70 L74,50 Z" />
+
+    <!-- Door -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M49,62 Q49,61 50,61 L58,61 Q59,61 59,62 L59,72 L49,72 Z" />
+
+    <!-- Door knob -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M56.5,67.5m-1.2,0a1.2,1.2 0,1 1,2.4 0a1.2,1.2 0,1 1,-2.4 0" />
+
+    <!-- Left window frame -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M37,53 L37,63 L47,63 L47,53 Z" />
+    <!-- Left window panes (4 panes via cross) -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M37,53 L47,53 L47,57.7 L37,57.7 Z" />
+    <path
+        android:fillColor="#0D2847"
+        android:pathData="M37,58.3 L47,58.3 L47,63 L37,63 Z" />
+    <!-- Left window cross bars -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M41.7,53 L42.3,53 L42.3,63 L41.7,63 Z" />
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M37,57.7 L47,57.7 L47,58.3 L37,58.3 Z" />
+
+    <!-- Right window frame -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M61,53 L61,63 L71,63 L71,53 Z" />
+    <!-- Right window panes -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M61,53 L71,53 L71,57.7 L61,57.7 Z" />
+    <path
+        android:fillColor="#0D2847"
+        android:pathData="M61,58.3 L71,58.3 L71,63 L61,63 Z" />
+    <!-- Right window cross bars -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M65.7,53 L66.3,53 L66.3,63 L65.7,63 Z" />
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M61,57.7 L71,57.7 L71,58.3 L61,58.3 Z" />
+
+    <!-- Three people silhouettes below the house -->
+    <!-- Left person head -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M40,76m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+    <!-- Left person body -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M37,80 Q37,79 38.5,79 L41.5,79 Q43,79 43,80 L43,85 Q43,86 42,86 L38,86 Q37,86 37,85 Z" />
+
+    <!-- Center person head (green = WG leader) -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M54,75m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0" />
+    <!-- Center person body -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M50,79.5 Q50,78.5 51.5,78.5 L56.5,78.5 Q58,78.5 58,79.5 L58,85.5 Q58,86.5 57,86.5 L51,86.5 Q50,86.5 50,85.5 Z" />
+
+    <!-- Right person head -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M68,76m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+    <!-- Right person body -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M65,80 Q65,79 66.5,79 L69.5,79 Q71,79 71,80 L71,85 Q71,86 70,86 L66,86 Q65,86 65,85 Z" />
+
+</vector>

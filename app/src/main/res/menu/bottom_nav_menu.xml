@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_nav_home" />
+
+    <item
+        android:id="@+id/nav_cleaning"
+        android:title="Tasks"
+        android:icon="@drawable/ic_nav_tasks" />
+
+    <item
+        android:id="@+id/nav_tickets"
+        android:title="Tickets"
+        android:icon="@drawable/ic_nav_tickets" />
+
+    <item
+        android:id="@+id/nav_crew"
+        android:title="Crew"
+        android:icon="@drawable/ic_nav_crew" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profil"
+        android:icon="@drawable/ic_nav_profile" />
+
+</menu>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Standard -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand / Accent (Modern Purple Style) -->
+    <color name="wg_primary">#FF7C3AED</color>          <!-- Violet Primary -->
+    <color name="wg_primary_dark">#FF5B21B6</color>     <!-- Darker Violet -->
+    <color name="wg_primary_light">#FFA78BFA</color>    <!-- Lighter Violet -->
+    <color name="wg_on_primary">#FFFFFFFF</color>
+
+    <color name="wg_secondary">#FF8B5CF6</color>        <!-- Purple Secondary -->
+    <color name="wg_on_secondary">#FFFFFFFF</color>
+
+    <color name="wg_tertiary">#FFC084FC</color>         <!-- Light Purple Accent -->
+    <color name="wg_on_tertiary">#FFFFFFFF</color>
+
+    <!-- Gradient Colors -->
+    <color name="wg_gradient_start">#FF7C3AED</color>
+    <color name="wg_gradient_end">#FF5B21B6</color>
+
+    <!-- Status Farben -->
+    <color name="wg_success">#FF22C55E</color>
+    <color name="wg_warning">#FFF59E0B</color>
+    <color name="wg_danger">#FFEF4444</color>
+    <color name="wg_info">#FF3B82F6</color>
+
+    <!-- LIGHT MODE -->
+    <color name="wg_light_background">#FFF8F7FC</color>
+    <color name="wg_light_surface">#FFFFFFFF</color>
+    <color name="wg_light_surface_variant">#FFF3F0FF</color>
+
+    <color name="wg_light_on_surface">#FF1F1F1F</color>
+    <color name="wg_light_on_surface_variant">#FF6B7280</color>
+
+    <!-- Input Field Colors -->
+    <color name="wg_input_background">#FFF5F5F5</color>
+    <color name="wg_input_stroke">#FFE5E5E5</color>
+    <color name="wg_input_stroke_focused">#FF7C3AED</color>
+
+    <!-- Social Button Colors -->
+    <color name="wg_google">#FFFFFFFF</color>
+    <color name="wg_facebook">#FF1877F2</color>
+    <color name="wg_apple">#FF000000</color>
+
+    <!-- DARK MODE -->
+    <color name="wg_dark_background">#FF0F0A1A</color>
+    <color name="wg_dark_surface">#FF1A1425</color>
+    <color name="wg_dark_surface_variant">#FF2D2640</color>
+
+    <color name="wg_dark_on_surface">#FFF3F0FF</color>
+    <color name="wg_dark_on_surface_variant">#FFA3A3A3</color>
+
+    <!-- Generic Aliases (used in layouts) -->
+    <!-- These point to LIGHT by default. values-night/colors.xml overrides them for DARK. -->
+    <color name="wg_background">@color/wg_light_background</color>
+    <color name="wg_surface">@color/wg_light_surface</color>
+    <color name="wg_surface_variant">@color/wg_light_surface_variant</color>
+
+    <color name="wg_text_primary">@color/wg_light_on_surface</color>
+    <color name="wg_text_secondary">@color/wg_light_on_surface_variant</color>
+    <color name="wg_text_hint">#FF9CA3AF</color>
+
+    <color name="wg_text_on_primary">#CCFFFFFF</color>
+    <color name="wg_divider">#FFE5E7EB</color>
+    
+    <!-- Missing colors used in layouts -->
+    <color name="wg_dark_text">#FF1F2937</color>
+    <color name="wg_light_outline">#FFD1D5DB</color>
+
+</resources>

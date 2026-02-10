@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MAPPING DARK MODE COLORS -->
+    <!-- These override the definitions in values/colors.xml when in Dark Mode -->
+
+    <color name="wg_background">@color/wg_dark_background</color>
+    <color name="wg_surface">@color/wg_dark_surface</color>
+    <color name="wg_surface_variant">@color/wg_dark_surface_variant</color>
+
+    <color name="wg_text_primary">@color/wg_dark_on_surface</color>
+    <color name="wg_text_secondary">@color/wg_dark_on_surface_variant</color>
+    <color name="wg_text_hint">#80A3A3A3</color>
+    
+    <color name="wg_text_on_primary">#E6FFFFFF</color>
+    <color name="wg_divider">#33FFFFFF</color>
+
+    <color name="wg_input_background">@color/wg_dark_surface_variant</color>
+    <color name="wg_input_stroke">#33FFFFFF</color>
+
+    <color name="wg_light_on_surface">@color/wg_dark_on_surface</color>
+    <color name="wg_light_on_surface_variant">@color/wg_dark_on_surface_variant</color>
+    <color name="wg_dark_text">@color/wg_dark_on_surface</color>
+    <color name="wg_light_outline">#40FFFFFF</color>
+
+</resources>

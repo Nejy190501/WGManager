@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Empty/skeleton state background -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/wg_surface_variant" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/wg_divider"
+        android:dashWidth="8dp"
+        android:dashGap="4dp" />
+</shape>
