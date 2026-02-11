@@ -8,6 +8,38 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. Hauptablauf der App  
+2. Authentifizierungsfluss  
+3. Einkauf & Finanzen  
+4. Putzplan / Aufgaben  
+5. Kalender  
+6. Splash (`SPLASH`)  
+7. Login (`LOGIN`)  
+8. WG-Finder (`WG_FINDER`)  
+9. Dashboard (`DASHBOARD`)  
+10. Crew (`CREW`)  
+11. Essensplan (`MEAL_PLANNER`)  
+12. Tresor (`VAULT`)  
+13. Belohnungen (`REWARDS`)  
+14. Analytics (`ANALYTICS`)  
+15. Schwarzes Brett (`BLACKBOARD`)  
+16. Profil (`PROFILE`)  
+17. System-Panel (`SYSTEM_PANEL`)  
+18. Fixkosten (`RECURRING_COSTS`)  
+19. Wall of Fame (`WALL_OF_FAME`)  
+20. Gäste-Pass (`GUEST_PASS`)  
+21. Smart Home (`SMART_HOME`)  
+22. Onboarding (`ONBOARDING`)  
+23. Funktionalitäten nach Kategorien  
+24. Rollen-Navigation: User  
+25. Rollen-Navigation: Admin  
+26. Rollen-Navigation: New User  
+27. Rollen-Navigation: Super Admin  
+
+---
+
 ## Rollen-Definition (global)
 
 | Rolle | Beschreibung |
@@ -1132,3 +1164,4 @@ flowchart TD
     class K button;
     class D,E,L,N,O screen;
 ```
+
