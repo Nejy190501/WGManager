@@ -85,17 +85,6 @@ flowchart TD
     V --> N
     M --> N
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: landet nach Session-Prüfung direkt im DASHBOARD."]
-    RLA["Admin: landet wie User im DASHBOARD, mit zusätzlichen Admin-Funktionen in WG-Screens."]
-    RLN["New User: wird nach Login in den WG_FINDER geführt und danach ggf. ins ONBOARDING."]
-    RLS["Super Admin: wird direkt in das SYSTEM_PANEL geroutet."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -111,8 +100,6 @@ flowchart TD
     class P,Q,R,U,V button;
     class T userInput;
     class F,I,K,L,M,N screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Abschnitt
@@ -132,19 +119,19 @@ flowchart TD
     B -->|Login| C["Email + Passwort eingeben"]
     B -->|Registrierung| D["Name + Email + Passwort"]
     B -->|Demo| E["Muster-User laden"]
-    
+
     C --> F["FirebaseAuthManager.login<br/>(teilweise)"]
     F -->|Erfolg| G["loadOrCreateUserProfile"]
     F -->|Fehler| H["Fehlermeldung anzeigen"]
-    
+
     D --> I["FirebaseAuthManager.register<br/>(teilweise)"]
     I -->|Erfolg| G
     I -->|Fehler| H
-    
+
     G --> J{"Profil in DB?"}
     J -->|Ja| K["Profil laden"]
     J -->|Nein| L["Neues Profil erstellen<br/>in SQLite (optional Firebase)"]
-    
+
     K --> M{"2FA aktiviert?"}
     L --> N["WG-Finder"]
     M -->|Ja| O["2FA-Code eingeben"]
@@ -154,19 +141,8 @@ flowchart TD
     P -->|Keine WG| N
     P -->|Onboarding| R["Onboarding"]
     P -->|Normal| S["Dashboard"]
-    
+
     E --> P
-
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: kann sich anmelden/registrieren und wird nach erfolgreichem Login ins DASHBOARD geroutet."]
-    RLA["Admin: identischer Login-Prozess wie User, danach ebenfalls DASHBOARD mit Admin-Rechten."]
-    RLN["New User: Login/Registrierung führt in den WG_FINDER, bis eine WG zugewiesen ist."]
-    RLS["Super Admin: nutzt denselben Auth-Flow, wird nach Routing ins SYSTEM_PANEL geleitet."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
 
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
@@ -182,8 +158,6 @@ flowchart TD
     class J,M,P systemDecision;
     class C,D,O userInput;
     class A,K,N,Q,R,S screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Abschnitt
@@ -212,15 +186,15 @@ flowchart TD
     B -->|Liste 📋| C["Einkaufsliste"]
     B -->|Bilanz 💰| D["Finanzübersicht"]
     B -->|Vorrat 📦| E["Vorratskammer"]
-    
+
     C --> F["Artikel hinzufügen"]
     F --> G["Name + Preis + Emoji"]
     G --> H["In SQLite speichern<br/>optional Firebase-Sync"]
-    
+
     C --> I["Als gekauft markieren"]
     I --> J["boughtBy = aktueller User"]
     J --> K["Bilanz neu berechnen"]
-    
+
     D --> L["Faire Kostenaufteilung"]
     L --> M["Gesamtausgaben ÷ Mitglieder"]
     M --> N{"Bilanz pro Person"}
@@ -232,20 +206,9 @@ flowchart TD
     R -->|Alle| T["Alle gekauften Items löschen"]
     S --> U["SQLite aktualisieren<br/>optional Firebase-Sync"]
     T --> U
-    
+
     E --> V["Vorrats-Status"]
     V --> W["Voll 🟢 / Niedrig 🟡 / Leer 🔴"]
-
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: kann Artikel anlegen, Einkäufe markieren und die eigene Bilanz sehen."]
-    RLA["Admin: kann zusätzlich WG-weite Finanzaktionen steuern (z. B. Schulden-/Bilanzbereinigung)."]
-    RLN["New User: hat ohne WG keinen direkten Zugriff auf den Screen."]
-    RLS["Super Admin: nutzt die Funktionen i. d. R. über Impersonation oder innerhalb einer WG wie ein Admin."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
 
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
@@ -261,8 +224,6 @@ flowchart TD
     class F,I,Q,S,T button;
     class G userInput;
     class A,C,D,E screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -283,27 +244,16 @@ flowchart TD
     C -->|Erledigt ✅| D["Task umschalten"]
     D --> E["+10 XP Punkte<br/>Streak erhöhen"]
     E --> F["SQLite + optional Firebase-Sync"]
-    
+
     C -->|Rotation 🔄| G["Aufgaben rotieren"]
     G --> H["Jeder bekommt die<br/>nächste Aufgabe"]
     H --> F
-    
+
     C -->|Neue Aufgabe| I["Titel + Zuweisen"]
     I --> F
-    
+
     C -->|Anstupsen 👋| J["Erinnerung senden<br/>als Ticket"]
     C -->|Strike ⚡| K["-15 XP Punkte<br/>für faule Mitbewohner"]
-
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: sieht zugewiesene Aufgaben und markiert erledigte Tasks."]
-    RLA["Admin: kann Aufgaben stärker steuern (z. B. Rotation, Zuweisung, Moderation)."]
-    RLN["New User: gelangt erst nach WG-Beitritt/Onboarding in diesen Screen."]
-    RLS["Super Admin: greift typischerweise per Impersonation auf WG-Aufgaben zu."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
 
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
@@ -318,8 +268,6 @@ flowchart TD
     class D,G,J,K button;
     class I userInput;
     class A,B screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -341,23 +289,12 @@ flowchart TD
     C -->|Party 🎉| E["Nur Party-Events"]
     C -->|Ruhe 🤫| F["Nur Ruhezeiten"]
     C -->|Besuch 👨‍👩‍👦| G["Nur Besuche"]
-    
+
     D --> H{"Aktion?"}
     H -->|Neues Event| I["Titel + Datum + Typ"]
     I --> J["In SQLite speichern<br/>optional Firebase-Sync"]
     H -->|Event Details| K["Detail-Dialog anzeigen"]
     H -->|Vergangene löschen| L["Alte Events entfernen"]
-
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: kann Termine ansehen und im normalen WG-Kontext Events erstellen."]
-    RLA["Admin: kann Kalenderpflege für die WG koordinieren (z. B. alte Events bereinigen)."]
-    RLN["New User: nutzt den Kalender erst nach erfolgreichem WG-Beitritt."]
-    RLS["Super Admin: kann Kalenderfunktionen WG-spezifisch via Impersonation nutzen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
 
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
@@ -372,8 +309,6 @@ flowchart TD
     class L button;
     class I userInput;
     class A,K screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -395,17 +330,6 @@ flowchart TD
     D -->|Ja| E["Profil laden"]
     D -->|Nein| F["Login-Screen"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: bestehende Session wird wiederhergestellt, danach Weiterleitung ins DASHBOARD."]
-    RLA["Admin: identisch zu User, aber mit Admin-Rechten nach dem Routing."]
-    RLN["New User: meist keine Session, daher Start über LOGIN und danach WG_FINDER."]
-    RLS["Super Admin: bestehende Session führt ins SYSTEM_PANEL."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -418,8 +342,6 @@ flowchart TD
     class B,C systemAction;
     class D systemDecision;
     class E,F screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -444,17 +366,6 @@ flowchart TD
     E --> G["Routing nach Rolle"]
     F --> G
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: meldet sich mit max@wg.com (oder eigenem Konto) an und geht ins DASHBOARD."]
-    RLA["Admin: meldet sich mit admin@wg.com an und erhält danach Admin-Funktionen."]
-    RLN["New User: nutzt Registrierung oder new@wg.com, danach WG_FINDER und später Onboarding."]
-    RLS["Super Admin: meldet sich mit super@wg.com an und wird ins SYSTEM_PANEL geroutet."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -468,8 +379,6 @@ flowchart TD
     class E button;
     class C,D userInput;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -495,17 +404,6 @@ flowchart TD
     E --> H["Warten auf Freigabe"]
     G --> I["Onboarding oder Dashboard"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: nutzt den Screen selten, da bereits einer WG zugeordnet."]
-    RLA["Admin: nutzt den Screen ebenfalls selten; Verwaltung erfolgt primär über WG-interne Screens."]
-    RLN["New User: Hauptscreen für Join-Code, Beitrittsanfrage oder neue WG-Erstellung."]
-    RLS["Super Admin: kann WG-Beitritte indirekt steuern, meist über SYSTEM_PANEL."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -519,8 +417,6 @@ flowchart TD
     class E,F button;
     class D userInput;
     class A,I screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -543,17 +439,6 @@ flowchart TD
     C -->|Kalender| F["CALENDAR"]
     C -->|Profil| G["PROFILE"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: zentrale Übersicht und Einstieg in alle täglichen WG-Funktionen."]
-    RLA["Admin: gleiche Basis wie User, ergänzt um administrative Entscheidungen für die WG."]
-    RLN["New User: erreicht das Dashboard erst nach WG-Zuweisung (ggf. nach Onboarding)."]
-    RLS["Super Admin: sieht typischerweise SYSTEM_PANEL; Dashboard bei Bedarf über Impersonation."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -566,8 +451,6 @@ flowchart TD
     class C userDecision;
     class D,E,F,G button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -589,17 +472,6 @@ flowchart TD
     C -->|Join-Code| E["WG-Code teilen"]
     C -->|Anfragen| F["Beitrittsanfragen verwalten"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: sieht Mitgliederliste, Rollen und WG-Basisinformationen."]
-    RLA["Admin: verwaltet Mitglieder, Rollen und Beitrittsprozesse innerhalb der WG."]
-    RLN["New User: kein direkter Zugriff ohne WG-Mitgliedschaft."]
-    RLS["Super Admin: kann WG-/Rollen-Themen global über SYSTEM_PANEL steuern."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -612,8 +484,6 @@ flowchart TD
     class C userDecision;
     class D,E,F button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -635,17 +505,6 @@ flowchart TD
     D --> E["Zutatenliste erzeugen"]
     E --> F["Optional in Einkaufsliste übernehmen"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: plant Mahlzeiten mit, wählt Rezepte und pflegt den Wochenplan."]
-    RLA["Admin: koordiniert den Plan für die WG (z. B. Verteilung/Struktur)."]
-    RLN["New User: erst nutzbar nach WG-Beitritt."]
-    RLS["Super Admin: nutzt den Screen bei Bedarf über WG-Kontext/Impersonation."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -659,8 +518,6 @@ flowchart TD
     class D userInput;
     class F button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -682,17 +539,6 @@ flowchart TD
     C -->|Admin/Super Admin| E["Eintrag hinzufügen/bearbeiten/löschen"]
     E --> F["Änderung speichern"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: liest und verwendet vorhandene Einträge (z. B. WLAN, Codes)."]
-    RLA["Admin: kann sensible Einträge zusätzlich erstellen, ändern und entfernen."]
-    RLN["New User: kein Zugriff, solange keine WG-Zugehörigkeit besteht."]
-    RLS["Super Admin: volle Rechte in WG-Kontext, meist über Impersonation."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -706,8 +552,6 @@ flowchart TD
     class E button;
     class D userAction;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -729,17 +573,6 @@ flowchart TD
     C -->|Shop verwalten| E["Items anlegen/bearbeiten"]
     D --> F["Feedback anzeigen"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: löst gesammelte Punkte für verfügbare Belohnungen ein."]
-    RLA["Admin: verwaltet zusätzlich das Belohnungsangebot (Items pflegen)."]
-    RLN["New User: erst nach WG-Beitritt und aktivem Konto sinnvoll nutzbar."]
-    RLS["Super Admin: kann die Logik WG-bezogen über Impersonation prüfen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -752,8 +585,6 @@ flowchart TD
     class C userDecision;
     class D,E button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -774,17 +605,6 @@ flowchart TD
     C --> D["Charts rendern"]
     D --> E["Filter/Zeitraum anwenden"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: sieht persönliche und WG-bezogene Kennzahlen."]
-    RLA["Admin: nutzt Analytics stärker für Planung/Optimierung in der WG."]
-    RLN["New User: hat vor WG-Beitritt keine belastbaren Analytics-Daten."]
-    RLS["Super Admin: kann Kennzahlen über unterschiedliche WGs hinweg indirekt prüfen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -796,8 +616,6 @@ flowchart TD
     class B,C,D systemAction;
     class E button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -823,17 +641,6 @@ flowchart TD
     F --> G
     G --> H["Abstimmen / Status ändern"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: erstellt Beiträge/Umfragen und stimmt bei Polls ab."]
-    RLA["Admin: moderiert Inhalte und steuert den Bearbeitungsstatus wichtiger Tickets."]
-    RLN["New User: nutzt das Board erst nach erfolgreichem WG-Beitritt."]
-    RLS["Super Admin: kann Moderationsfälle über Impersonation nachvollziehen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -846,8 +653,6 @@ flowchart TD
     class C userDecision;
     class D,E,F,G button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -869,17 +674,6 @@ flowchart TD
     C -->|Passwort| E["Passwort ändern"]
     C -->|Logout| F["Session beenden -> LOGIN"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: verwaltet persönliche Einstellungen, Sicherheit und Darstellung."]
-    RLA["Admin: hat zusätzliche WG-bezogene Einstelloptionen/Verwaltungsdialoge."]
-    RLN["New User: richtet hier Basisprofil ein und arbeitet parallel Onboarding-Schritte ab."]
-    RLS["Super Admin: verwaltet eigenes Profil und springt von hier bei Bedarf in Systemfunktionen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -892,8 +686,6 @@ flowchart TD
     class C userDecision;
     class D,E,F button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -916,17 +708,6 @@ flowchart TD
     C -->|Maintenance| F["Wartungsmodus toggeln"]
     C -->|Broadcast| G["Systemnachricht senden"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: kein Zugriff."]
-    RLA["Admin: kein Zugriff (WG-Admin ist nicht automatisch System-Admin)."]
-    RLN["New User: kein Zugriff."]
-    RLS["Super Admin: vollständiger Zugriff auf globale Verwaltungsfunktionen."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -939,8 +720,6 @@ flowchart TD
     class C userDecision;
     class D,E,F,G button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -963,17 +742,6 @@ flowchart TD
     D --> F["Anteil pro Person berechnen"]
     E --> F
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: sieht Kostenstruktur und den eigenen Anteil."]
-    RLA["Admin: pflegt Fixkosten aktiv und steuert die Verteilung."]
-    RLN["New User: erst nutzbar nach WG-Zuweisung."]
-    RLS["Super Admin: kann Kostenmechanik je WG über Impersonation kontrollieren."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -986,8 +754,6 @@ flowchart TD
     class C userDecision;
     class D button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -1011,17 +777,6 @@ flowchart TD
     E --> G["Ranking neu berechnen"]
     F --> G
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: sieht das Ranking und kann soziale Interaktionen (Kudos/Shame) auslösen."]
-    RLA["Admin: nutzt denselben Screen und kann zusätzlich moderierend eingreifen."]
-    RLN["New User: hat vor WG-Beitritt keine aktive Ranking-Teilnahme."]
-    RLS["Super Admin: kann WG-Dynamik über Impersonation analysieren."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -1034,8 +789,6 @@ flowchart TD
     class D userDecision;
     class E,F button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -1057,17 +810,6 @@ flowchart TD
     C -->|Widerrufen| E["Pass deaktivieren"]
     C -->|Löschen| F["Pass entfernen"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: kann Gästezugänge im Rahmen der WG-Regeln nutzen/teilen."]
-    RLA["Admin: verwaltet Gäste-Pässe zentral (Erstellen, Widerrufen, Entfernen)."]
-    RLN["New User: ohne WG kein Gäste-Pass-Kontext vorhanden."]
-    RLS["Super Admin: überprüft Prozesse über WG-Kontext oder Impersonation."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -1081,8 +823,6 @@ flowchart TD
     class D userInput;
     class E,F button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -1103,17 +843,6 @@ flowchart TD
     C -->|Aktivieren| D["Benachrichtigung/Ticket erzeugen"]
     C -->|Deaktivieren| E["Status speichern"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: aktiviert/deaktiviert verfügbare Szenen im Alltag."]
-    RLA["Admin: kann Szenenstruktur und Nutzung in der WG koordinieren."]
-    RLN["New User: nutzt Smart-Home erst nach Eintritt in eine WG."]
-    RLS["Super Admin: validiert Szenen-Logik über Systemsicht/Impersonation."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -1126,8 +855,6 @@ flowchart TD
     class C userDecision;
     class D,E button;
     class A screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -1150,17 +877,6 @@ flowchart TD
     E --> F["Weiter zu DASHBOARD"]
     D -->|Nein| G["Fortschritt speichern"]
 
-
-    A --> RLQ{"Rolle?"}
-    RLU["User: durchläuft Onboarding nur, wenn noch nicht abgeschlossen."]
-    RLA["Admin: wird in der Regel schneller/fokussierter durch den Setup-Prozess geführt."]
-    RLN["New User: ist die Hauptzielrolle dieses Screens (Pflichtpfad nach WG-Beitritt)."]
-    RLS["Super Admin: startet standardmäßig im SYSTEM_PANEL und nutzt Onboarding üblicherweise nicht."]
-    RLQ -->|User| RLU
-    RLQ -->|Admin| RLA
-    RLQ -->|New User| RLN
-    RLQ -->|Super Admin| RLS
-
     classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
     classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
     classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
@@ -1173,8 +889,6 @@ flowchart TD
     class C userInput;
     class D systemDecision;
     class A,F screen;
-    class RLQ systemDecision;
-    class RLU,RLA,RLN,RLS userAction;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -1253,11 +967,6 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    RLQ{"Rolle?"}
-    RLQ -->|User| A
-    RLQ -->|Admin| RX["Siehe Kapitel 25"]
-    RLQ -->|New User| RY["Siehe Kapitel 26"]
-    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
 
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
@@ -1286,9 +995,8 @@ flowchart TD
     class A userAction;
     class B,F systemAction;
     class N userDecision;
-    class C,RLQ systemDecision;
+    class C systemDecision;
     class D,E,G,H,I,J,K,L,M screen;
-    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1299,11 +1007,6 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    RLQ{"Rolle?"}
-    RLQ -->|User| RX["Siehe Kapitel 24"]
-    RLQ -->|Admin| A
-    RLQ -->|New User| RY["Siehe Kapitel 26"]
-    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
 
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
@@ -1337,9 +1040,8 @@ flowchart TD
     class A userAction;
     class B,F,S,T,U systemAction;
     class N,R userDecision;
-    class C,RLQ systemDecision;
+    class C systemDecision;
     class D,E,G,H,I,J,K,L,M screen;
-    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1350,11 +1052,6 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    RLQ{"Rolle?"}
-    RLQ -->|User| RX["Siehe Kapitel 24"]
-    RLQ -->|Admin| RY["Siehe Kapitel 25"]
-    RLQ -->|New User| A
-    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
 
     A["App-Start"] --> B["SPLASH"]
     B --> C["LOGIN / REGISTRIERUNG"]
@@ -1387,11 +1084,10 @@ flowchart TD
     class A userAction;
     class D,K systemAction;
     class F userDecision;
-    class J,M,RLQ systemDecision;
+    class J,M systemDecision;
     class G button;
     class C,H,I userInput;
     class B,E,L,N screen;
-    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1402,11 +1098,6 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    RLQ{"Rolle?"}
-    RLQ -->|User| RX["Siehe Kapitel 24"]
-    RLQ -->|Admin| RY["Siehe Kapitel 25"]
-    RLQ -->|New User| RZ["Siehe Kapitel 26"]
-    RLQ -->|Super Admin| A
 
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
@@ -1435,9 +1126,9 @@ flowchart TD
     classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
 
     class A userAction;
-    class B,F,H,I,J,RX,RY,RZ systemAction;
+    class B,F,H,I,J systemAction;
     class G,M userDecision;
-    class C,RLQ systemDecision;
+    class C systemDecision;
     class K button;
     class D,E,L,N,O screen;
 ```
