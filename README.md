@@ -1,4 +1,4 @@
-# WG Manager — Intelligente WG-Verwaltung
+﻿# WG Manager — Intelligente WG-Verwaltung
 
 > **Kurs:** App Entwicklung mit Android — HWR Berlin  
 > **Semester:** SoSe 2026  
@@ -8,11 +8,7 @@
 
 ## Gruppenmitglieder
 
-Das Projekt wurde von den folgenden Studierenden entwickelt:
-
-Jean Yves Nkwane Ebongue - Matrikelnummer: 77201393552
-
-Samed Cevat Ünal - Matrikelnummer: xxxxxxxxxx
+Das Projekt wurde von **Jean Yves Nkwane Ebongue - Matrikelnummer: 77201393552** entwickelt:
 
 ---
 
@@ -56,16 +52,16 @@ Die App ermöglicht Mitbewohnern, alle organisatorischen Aspekte des Zusammenleb
 | Architektur             | Single-Activity, zustandsbasierte Navigation |
 | Cloud-Datenbank         | Firebase Realtime Database (teilweise angebunden) |
 | Authentifizierung       | Muster-Login mit Demo-Accounts (Firebase Auth nur teilweise angebunden) |
-| Lokale Datenbank        | SQLite (android.database.sqlite)           |
+| Lokale Datenbank        | SQLite nur vorbereitet (aktuell nicht aktiv genutzt) |
 | Min. Android-Version    | API 26 (Android 8.0)                       |
 | Build-System            | Gradle (Kotlin DSL), AGP 9.0.0            |
 
 
 **Ablauf:**
 1. Beim App-Start wird versucht, Daten von **Firebase** zu laden
-2. Bei Erfolg: Daten werden in **SQLite** gecacht (Offline-Backup)
-3. Bei Firebase-Fehler: Daten werden aus dem **SQLite-Cache** bzw. Mock-Daten geladen (Demo-/Offline-Modus)
-4. Änderungen werden lokal nutzbar gehalten; Firebase-Sync funktioniert nur, wenn die Anbindung verfügbar ist
+2. Bei Erfolg: Daten werden im App-State bereitgestellt (Demo-/Projektstand)
+3. Bei Firebase-Fehler: Daten werden aus Mock-Daten geladen (Demo-/Offline-Modus)
+4. SQLite war als lokaler Cache vorbereitet, wurde im aktuellen Projektstand aber nicht aktiv genutzt
 
 ### Projektstruktur
 
@@ -76,7 +72,7 @@ app/src/main/java/com/example/wgmanager/
 │   ├── DataStore.kt                 # Zentraler Datenspeicher (16 Datenklassen, 10 Enums)
 │   ├── FirebaseSync.kt              # Firebase Realtime DB Operationen
 │   ├── FirebaseAuthManager.kt       # Firebase Authentication Wrapper
-│   ├── LocalDatabase.kt             # SQLite Offline-Cache (15 Tabellen)
+│   ├── LocalDatabase.kt             # Vorbereitung fuer lokalen SQLite-Cache (aktuell nicht aktiv genutzt)
 │   ├── Localization.kt              # DE/EN Übersetzungen
 │   └── PdfExporter.kt               # PDF-Export für Einkaufslisten
 ├── ui/
