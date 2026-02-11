@@ -23,7 +23,7 @@ Die App ermöglicht Mitbewohnern, alle organisatorischen Aspekte des Zusammenleb
 
 ### Kernfeatures
 
-- **Authentifizierung** — Firebase Email/Passwort-Login, Registrierung, Passwort-Zurücksetzen, 2FA
+- **Authentifizierung (Demo-fähig)** — Muster-Zugangsdaten pro Rolle (User/Admin/Super Admin), Login/Registrierung/Passwort-Reset/2FA-UI
 - **Dashboard** — Statusanzeige aller Mitbewohner, Quick-Actions, nächstes Event
 - **Einkaufsmanagement** — Gemeinsame Einkaufsliste, Preise, Kostenaufteilung (faire Bilanz), Schulden begleichen
 - **Putzplan** — Aufgaben-Rotation zwischen Mitbewohnern, Streak-System, XP-Punkte
@@ -54,18 +54,18 @@ Die App ermöglicht Mitbewohnern, alle organisatorischen Aspekte des Zusammenleb
 | Sprache                 | Kotlin 2.2.10                              |
 | UI-Framework            | Jetpack Compose (Material 3)               |
 | Architektur             | Single-Activity, zustandsbasierte Navigation |
-| Cloud-Datenbank         | Firebase Realtime Database                 |
-| Authentifizierung       | Firebase Authentication (Email/Passwort)   |
+| Cloud-Datenbank         | Firebase Realtime Database (teilweise angebunden) |
+| Authentifizierung       | Muster-Login mit Demo-Accounts (Firebase Auth nur teilweise angebunden) |
 | Lokale Datenbank        | SQLite (android.database.sqlite)           |
 | Min. Android-Version    | API 26 (Android 8.0)                       |
 | Build-System            | Gradle (Kotlin DSL), AGP 9.0.0            |
 
 
 **Ablauf:**
-1. Beim App-Start werden Daten von **Firebase** geladen (Cloud)
+1. Beim App-Start wird versucht, Daten von **Firebase** zu laden
 2. Bei Erfolg: Daten werden in **SQLite** gecacht (Offline-Backup)
-3. Bei Firebase-Fehler: Daten werden aus dem **SQLite-Cache** geladen (Offline-Modus)
-4. Bei jeder Änderung: Es wird **parallel** in Firebase UND SQLite geschrieben
+3. Bei Firebase-Fehler: Daten werden aus dem **SQLite-Cache** bzw. Mock-Daten geladen (Demo-/Offline-Modus)
+4. Änderungen werden lokal nutzbar gehalten; Firebase-Sync funktioniert nur, wenn die Anbindung verfügbar ist
 
 ### Projektstruktur
 
@@ -129,25 +129,23 @@ app/src/main/java/com/example/wgmanager/
 
 ---
 
-## Firebase-Konfiguration
+## Aktueller Firebase-Status
 
-1. **Firebase Console** → [console.firebase.google.com](https://console.firebase.google.com)
-2. Projekt: `wgmanager-5df4f`
-3. **Authentication** → Email/Passwort aktivieren
-4. **Realtime Database** → Region: `europe-west1`
-5. DB-URL: `https://wgmanager-5df4f-default-rtdb.europe-west1.firebasedatabase.app/`
-6. Sicherheitsregeln (Testmodus):
-   ```json
-   {
-     "rules": {
-       ".read": true,
-       ".write": true
-     }
-   }
-   ```
+Die vollständige Ende-zu-Ende-Anbindung an Firebase wurde im Projektzeitraum nicht fertiggestellt.  
+Für die Demonstration verwenden wir deshalb vordefinierte Muster-Zugangsdaten pro Rolle.
+
+### Muster-Zugangsdaten
+
+> Passwort für die Demo-Accounts: `1234`
+
+| Rolle | E-Mail | Hinweis |
+| ----- | ------ | ------- |
+| User | `max@wg.com` | Standard-Mitbewohner mit WG |
+| Admin | `admin@wg.com` | Admin-Rechte in der WG |
+| Super Admin | `super@wg.com` | Zugriff auf System-Panel |
+| User (ohne WG) | `new@wg.com` | Startet im WG-Finder/Onboarding |
 
 ---
-
 ## APK bauen
 
 ```bash
