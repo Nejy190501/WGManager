@@ -168,7 +168,7 @@ Siehe [ABLAUFDIAGRAMM.md](ABLAUFDIAGRAMM.md) für das vollständige Ablaufdiagra
 - https://developer.android.com/kotlin?hl=de
 - https://kotlinlang.org/
 - https://www.imaginarycloud.com/blog/kotlin-vs-java#:~:text=Kotlin%20is%20more%20modern%2C%20with,depends%20on%20your%20project%20needs.
-- KI als Unterstützung bei der Fehlersuche (ChatGPT, Google Gemini)
 - https://aistudio.google.com/
 - https://www.youtube.com/playlist?list=PLYx38U7gxBf3pmsHVTUwRT_lGON6ZIBHi
 - https://www.youtube.com/watch?v=N8p7IJiwSLA
+- KI als Unterstützung bei der Fehlersuche und Erweiterung von Ideen (ChatGPT, Google Gemini)
