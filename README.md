@@ -171,4 +171,14 @@ Siehe [ABLAUFDIAGRAMM.md](ABLAUFDIAGRAMM.md) für das vollständige Ablaufdiagra
 - https://aistudio.google.com/
 - https://www.youtube.com/playlist?list=PLYx38U7gxBf3pmsHVTUwRT_lGON6ZIBHi
 - https://www.youtube.com/watch?v=N8p7IJiwSLA
+- https://michaelkipp.de/android/hilfe.html
+- https://michaelkipp.de/android/intro.html
+- https://michaelkipp.de/android/erste-app.html
+- https://michaelkipp.de/android/layout.html
+- https://michaelkipp.de/android/interaktion.html
+- https://michaelkipp.de/android/ressourcen.html
+- https://michaelkipp.de/android/daten.html
+- https://michaelkipp.de/android/daten2.html
+- https://michaelkipp.de/android/intents.html
+- https://michaelkipp.de/android/layout2.html
 - KI als Unterstützung bei der Fehlersuche und Erweiterung von Ideen (ChatGPT, Google Gemini)
