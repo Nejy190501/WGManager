@@ -51,33 +51,7 @@ flowchart TD
 
 ---
 
-## 2. Datenbankarchitektur
-
-```mermaid
-flowchart LR
-    UI["UI-Layer<br/>20 Compose-Screens"] <-->|liest/schreibt| DS["DataStore<br/>In-Memory Singleton"]
-    DS <-->|Optionaler Cloud-Sync| FB[("Firebase<br/>Realtime DB")]
-    DS <-->|Offline-Cache| SQ[("SQLite<br/>LocalDatabase")]
-    DS --> AUTH["Login-Manager<br/>(Muster-Accounts/Firebase)"]
-    AUTH <--> FBA[("Firebase<br/>Authentication - teilweise")]
-
-    style UI fill:#818cf8,color:#fff
-    style DS fill:#10b981,color:#fff
-    style FB fill:#f59e0b,color:#fff
-    style SQ fill:#3b82f6,color:#fff
-    style AUTH fill:#ef4444,color:#fff
-    style FBA fill:#f59e0b,color:#fff
-```
-
-**Datenfluss bei einer Änderung:**
-1. Screen ruft `DataStore.addShoppingItem(...)` auf
-2. DataStore aktualisiert die In-Memory-Liste
-3. `FirebaseSync.pushShoppingItem(item)` → Cloud-Datenbank (wenn verfügbar)
-4. `LocalDatabase.get().saveShoppingItem(item)` → Lokaler SQLite-Cache
-
----
-
-## 3. Authentifizierungsfluss
+## 2. Authentifizierungsfluss
 
 ```mermaid
 flowchart TD
@@ -115,18 +89,18 @@ flowchart TD
     style Q fill:#ef4444,color:#fff
 ```
 
-### Muster-Zugangsdaten (Demo)
+### Muster-Zugangsdaten und Rollen-Logik (Demo)
 
-| Rolle | E-Mail | Passwort |
-| ----- | ------ | -------- |
-| User | `max@wg.com` | `1234` |
-| Admin | `admin@wg.com` | `1234` |
-| Super Admin | `super@wg.com` | `1234` |
-| User (ohne WG) | `new@wg.com` | `1234` |
+| Rolle | E-Mail | Passwort | Ziel nach Login | Wie es funktionieren soll |
+| ----- | ------ | -------- | --------------- | ------------------------- |
+| User | `max@wg.com` | `1234` | `DASHBOARD` | Normale WG-Nutzung: Aufgaben, Einkauf, Kalender, Profil |
+| Admin | `admin@wg.com` | `1234` | `DASHBOARD` | Wie User, zusätzlich Admin-Aktionen (z. B. WG-Verwaltung/Fixkosten) |
+| Super Admin | `super@wg.com` | `1234` | `SYSTEM_PANEL` | Globale Verwaltung: User/WGs verwalten, Impersonation, Wartung |
+| User (ohne WG) | `new@wg.com` | `1234` | `WG_FINDER` | Zuerst WG beitreten/erstellen; danach ggf. `ONBOARDING`, dann `DASHBOARD` |
 
 ---
 
-## 4. Einkauf & Finanzen
+## 3. Einkauf & Finanzen
 
 ```mermaid
 flowchart TD
@@ -164,7 +138,7 @@ flowchart TD
 
 ---
 
-## 5. Putzplan / Aufgaben
+## 4. Putzplan / Aufgaben
 
 ```mermaid
 flowchart TD
@@ -190,7 +164,7 @@ flowchart TD
 
 ---
 
-## 6. Kalender
+## 5. Kalender
 
 ```mermaid
 flowchart TD
@@ -212,7 +186,39 @@ flowchart TD
 
 ---
 
-## 7. Screen-Übersicht (Navigation)
+## 6. Alle 20 Screens
+
+### Diagramm (alle Screens)
+
+```mermaid
+flowchart TB
+    APP["WG Manager App"]
+
+    APP --> S01["1. Splash (SPLASH)"]
+    APP --> S02["2. Login (LOGIN)"]
+    APP --> S03["3. WG-Finder (WG_FINDER)"]
+    APP --> S04["4. Dashboard (DASHBOARD)"]
+    APP --> S05["5. Einkauf (SHOPPING)"]
+    APP --> S06["6. Putzplan (CLEANING)"]
+    APP --> S07["7. Crew (CREW)"]
+    APP --> S08["8. Kalender (CALENDAR)"]
+    APP --> S09["9. Essensplan (MEAL_PLANNER)"]
+    APP --> S10["10. Tresor (VAULT)"]
+    APP --> S11["11. Belohnungen (REWARDS)"]
+    APP --> S12["12. Analytics (ANALYTICS)"]
+    APP --> S13["13. Schwarzes Brett (BLACKBOARD)"]
+    APP --> S14["14. Profil (PROFILE)"]
+    APP --> S15["15. System-Panel (SYSTEM_PANEL)"]
+    APP --> S16["16. Fixkosten (RECURRING_COSTS)"]
+    APP --> S17["17. Wall of Fame (WALL_OF_FAME)"]
+    APP --> S18["18. Gäste-Pass (GUEST_PASS)"]
+    APP --> S19["19. Smart Home (SMART_HOME)"]
+    APP --> S20["20. Onboarding (ONBOARDING)"]
+
+    style APP fill:#10b981,color:#fff
+```
+
+### Tabelle (Navigation)
 
 | Nr. | Screen             | Enum-Wert         | Beschreibung                                    |
 | --- | ------------------ | ----------------- | ----------------------------------------------- |
@@ -239,84 +245,7 @@ flowchart TD
 
 ---
 
-## 8. Datenmodell (Firebase/SQLite, konzeptionell)
-
-```mermaid
-erDiagram
-    USERS {
-        string id PK
-        string name
-        string email
-        string role
-        string wgId FK
-        int points
-        string status
-        boolean hasWG
-    }
-    WGS {
-        string id PK
-        string name
-        string address
-        string joinCode
-        int rentPrice
-        double monthlyBudget
-    }
-    SHOPPING_ITEMS {
-        string id PK
-        string name
-        double price
-        string addedBy
-        string boughtBy
-        string status
-    }
-    TASKS {
-        string id PK
-        string title
-        string assignedTo
-        boolean completed
-        int streak
-    }
-    EVENTS {
-        string id PK
-        string title
-        string date
-        string type
-    }
-    TICKETS {
-        string id PK
-        string type
-        string text
-        string author
-    }
-    RECIPES {
-        string id PK
-        string name
-        string difficulty
-        int timeMinutes
-    }
-    VAULT_ITEMS {
-        string id PK
-        string label
-        string value
-        string type
-    }
-    RECURRING_COSTS {
-        string id PK
-        string name
-        double totalAmount
-        string paidBy
-    }
-
-    USERS ||--o{ WGS : "gehört zu"
-    USERS ||--o{ SHOPPING_ITEMS : "kauft"
-    USERS ||--o{ TASKS : "erledigt"
-    USERS ||--o{ EVENTS : "erstellt"
-    USERS ||--o{ TICKETS : "schreibt"
-```
-
----
-
-## 9. Funktionalitäten nach Kategorien
+## 7. Funktionalitäten nach Kategorien
 
 ### A) Benutzerverwaltung & Sicherheit
 - Muster-Login mit Demo-Accounts pro Rolle (User/Admin/Super Admin)
@@ -367,3 +296,4 @@ erDiagram
 - Animierte Übergänge zwischen Screens
 - Emoji-basierte Kategorisierung
 - Responsive Layout mit Edge-to-Edge Support
+
