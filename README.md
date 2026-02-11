@@ -163,8 +163,6 @@ Siehe [ABLAUFDIAGRAMM.md](ABLAUFDIAGRAMM.md) für das vollständige Ablaufdiagra
 
 ## Quellen
 
-- https://michaelkipp.de/android/intro.html
-- https://michaelkipp.de/android/erste-app.html
 - https://developer.android.com/kotlin?hl=de
 - https://kotlinlang.org/
 - https://www.imaginarycloud.com/blog/kotlin-vs-java#:~:text=Kotlin%20is%20more%20modern%2C%20with,depends%20on%20your%20project%20needs.
