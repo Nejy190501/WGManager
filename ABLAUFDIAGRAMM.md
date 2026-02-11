@@ -8,6 +8,17 @@
 
 ---
 
+## Rollen-Definition (global)
+
+| Rolle | Beschreibung |
+| ----- | ------------ |
+| `User` | Standard-Mitglied einer WG, nutzt die regulären WG-Funktionen |
+| `Admin` | WG-Admin mit erweiterten Rechten innerhalb der eigenen WG |
+| `New User` | Neuer Benutzer ohne WG (z. B. `new@wg.com`), startet im WG-Finder |
+| `Super Admin` | Systemweite Rolle mit Zugriff auf `SYSTEM_PANEL`, inkl. Impersonation |
+
+---
+
 ## 1. Hauptablauf der App
 
 ```mermaid
@@ -49,6 +60,13 @@ flowchart TD
     style I fill:#f59e0b,color:#fff
 ```
 
+### Rollen-Ablauf in diesem Abschnitt
+
+- `User`: landet nach Session-Prüfung direkt im `DASHBOARD`.
+- `Admin`: landet wie `User` im `DASHBOARD`, mit zusätzlichen Admin-Funktionen in WG-Screens.
+- `New User`: wird nach Login in den `WG_FINDER` geführt und danach ggf. ins `ONBOARDING`.
+- `Super Admin`: wird direkt in das `SYSTEM_PANEL` geroutet.
+
 ---
 
 ## 2. Authentifizierungsfluss
@@ -88,6 +106,13 @@ flowchart TD
     style S fill:#6366f1,color:#fff
     style Q fill:#ef4444,color:#fff
 ```
+
+### Rollen-Ablauf in diesem Abschnitt
+
+- `User`: kann sich anmelden/registrieren und wird nach erfolgreichem Login ins `DASHBOARD` geroutet.
+- `Admin`: identischer Login-Prozess wie `User`, danach ebenfalls `DASHBOARD` mit Admin-Rechten.
+- `New User`: Login/Registrierung führt in den `WG_FINDER`, bis eine WG zugewiesen ist.
+- `Super Admin`: nutzt denselben Auth-Flow, wird nach Routing ins `SYSTEM_PANEL` geleitet.
 
 ### Muster-Zugangsdaten und Rollen-Logik (Demo)
 
@@ -136,6 +161,13 @@ flowchart TD
     style L fill:#10b981,color:#fff
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: kann Artikel anlegen, Einkäufe markieren und die eigene Bilanz sehen.
+- `Admin`: kann zusätzlich WG-weite Finanzaktionen steuern (z. B. Schulden-/Bilanzbereinigung).
+- `New User`: hat ohne WG keinen direkten Zugriff auf den Screen.
+- `Super Admin`: nutzt die Funktionen i. d. R. über Impersonation oder innerhalb einer WG wie ein Admin.
+
 ---
 
 ## 4. Putzplan / Aufgaben
@@ -162,6 +194,13 @@ flowchart TD
     style E fill:#10b981,color:#fff
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: sieht zugewiesene Aufgaben und markiert erledigte Tasks.
+- `Admin`: kann Aufgaben stärker steuern (z. B. Rotation, Zuweisung, Moderation).
+- `New User`: gelangt erst nach WG-Beitritt/Onboarding in diesen Screen.
+- `Super Admin`: greift typischerweise per Impersonation auf WG-Aufgaben zu.
+
 ---
 
 ## 5. Kalender
@@ -184,6 +223,13 @@ flowchart TD
     style A fill:#6366f1,color:#fff
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: kann Termine ansehen und im normalen WG-Kontext Events erstellen.
+- `Admin`: kann Kalenderpflege für die WG koordinieren (z. B. alte Events bereinigen).
+- `New User`: nutzt den Kalender erst nach erfolgreichem WG-Beitritt.
+- `Super Admin`: kann Kalenderfunktionen WG-spezifisch via Impersonation nutzen.
+
 ---
 
 ## 6. Splash (`SPLASH`)
@@ -196,6 +242,13 @@ flowchart TD
     D -->|Ja| E["Profil laden"]
     D -->|Nein| F["Login-Screen"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: bestehende Session wird wiederhergestellt, danach Weiterleitung ins `DASHBOARD`.
+- `Admin`: identisch zu `User`, aber mit Admin-Rechten nach dem Routing.
+- `New User`: meist keine Session, daher Start über `LOGIN` und danach `WG_FINDER`.
+- `Super Admin`: bestehende Session führt ins `SYSTEM_PANEL`.
 
 ---
 
@@ -212,6 +265,13 @@ flowchart TD
     E --> G["Routing nach Rolle"]
     F --> G
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: meldet sich mit `max@wg.com` (oder eigenem Konto) an und geht ins `DASHBOARD`.
+- `Admin`: meldet sich mit `admin@wg.com` an und erhält danach Admin-Funktionen.
+- `New User`: nutzt Registrierung oder `new@wg.com`, danach `WG_FINDER` und später Onboarding.
+- `Super Admin`: meldet sich mit `super@wg.com` an und wird ins `SYSTEM_PANEL` geroutet.
 
 ---
 
@@ -230,6 +290,13 @@ flowchart TD
     G --> I["Onboarding oder Dashboard"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: nutzt den Screen selten, da bereits einer WG zugeordnet.
+- `Admin`: nutzt den Screen ebenfalls selten; Verwaltung erfolgt primär über WG-interne Screens.
+- `New User`: Hauptscreen für Join-Code, Beitrittsanfrage oder neue WG-Erstellung.
+- `Super Admin`: kann WG-Beitritte indirekt steuern, meist über `SYSTEM_PANEL`.
+
 ---
 
 ## 9. Dashboard (`DASHBOARD`)
@@ -244,6 +311,13 @@ flowchart TD
     C -->|Profil| G["PROFILE"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: zentrale Übersicht und Einstieg in alle täglichen WG-Funktionen.
+- `Admin`: gleiche Basis wie `User`, ergänzt um administrative Entscheidungen für die WG.
+- `New User`: erreicht das Dashboard erst nach WG-Zuweisung (ggf. nach Onboarding).
+- `Super Admin`: sieht typischerweise `SYSTEM_PANEL`; Dashboard bei Bedarf über Impersonation.
+
 ---
 
 ## 10. Crew (`CREW`)
@@ -256,6 +330,13 @@ flowchart TD
     C -->|Join-Code| E["WG-Code teilen"]
     C -->|Anfragen| F["Beitrittsanfragen verwalten"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: sieht Mitgliederliste, Rollen und WG-Basisinformationen.
+- `Admin`: verwaltet Mitglieder, Rollen und Beitrittsprozesse innerhalb der WG.
+- `New User`: kein direkter Zugriff ohne WG-Mitgliedschaft.
+- `Super Admin`: kann WG-/Rollen-Themen global über `SYSTEM_PANEL` steuern.
 
 ---
 
@@ -270,6 +351,13 @@ flowchart TD
     E --> F["Optional in Einkaufsliste übernehmen"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: plant Mahlzeiten mit, wählt Rezepte und pflegt den Wochenplan.
+- `Admin`: koordiniert den Plan für die WG (z. B. Verteilung/Struktur).
+- `New User`: erst nutzbar nach WG-Beitritt.
+- `Super Admin`: nutzt den Screen bei Bedarf über WG-Kontext/Impersonation.
+
 ---
 
 ## 12. Tresor (`VAULT`)
@@ -282,6 +370,13 @@ flowchart TD
     C -->|Admin/Super Admin| E["Eintrag hinzufügen/bearbeiten/löschen"]
     E --> F["Änderung speichern"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: liest und verwendet vorhandene Einträge (z. B. WLAN, Codes).
+- `Admin`: kann sensible Einträge zusätzlich erstellen, ändern und entfernen.
+- `New User`: kein Zugriff, solange keine WG-Zugehörigkeit besteht.
+- `Super Admin`: volle Rechte in WG-Kontext, meist über Impersonation.
 
 ---
 
@@ -296,6 +391,13 @@ flowchart TD
     D --> F["Feedback anzeigen"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: löst gesammelte Punkte für verfügbare Belohnungen ein.
+- `Admin`: verwaltet zusätzlich das Belohnungsangebot (Items pflegen).
+- `New User`: erst nach WG-Beitritt und aktivem Konto sinnvoll nutzbar.
+- `Super Admin`: kann die Logik WG-bezogen über Impersonation prüfen.
+
 ---
 
 ## 14. Analytics (`ANALYTICS`)
@@ -307,6 +409,13 @@ flowchart TD
     C --> D["Charts rendern"]
     D --> E["Filter/Zeitraum anwenden"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: sieht persönliche und WG-bezogene Kennzahlen.
+- `Admin`: nutzt Analytics stärker für Planung/Optimierung in der WG.
+- `New User`: hat vor WG-Beitritt keine belastbaren Analytics-Daten.
+- `Super Admin`: kann Kennzahlen über unterschiedliche WGs hinweg indirekt prüfen.
 
 ---
 
@@ -325,6 +434,13 @@ flowchart TD
     G --> H["Abstimmen / Status ändern"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: erstellt Beiträge/Umfragen und stimmt bei Polls ab.
+- `Admin`: moderiert Inhalte und steuert den Bearbeitungsstatus wichtiger Tickets.
+- `New User`: nutzt das Board erst nach erfolgreichem WG-Beitritt.
+- `Super Admin`: kann Moderationsfälle über Impersonation nachvollziehen.
+
 ---
 
 ## 16. Profil (`PROFILE`)
@@ -337,6 +453,13 @@ flowchart TD
     C -->|Passwort| E["Passwort ändern"]
     C -->|Logout| F["Session beenden -> LOGIN"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: verwaltet persönliche Einstellungen, Sicherheit und Darstellung.
+- `Admin`: hat zusätzliche WG-bezogene Einstelloptionen/Verwaltungsdialoge.
+- `New User`: richtet hier Basisprofil ein und arbeitet parallel Onboarding-Schritte ab.
+- `Super Admin`: verwaltet eigenes Profil und springt von hier bei Bedarf in Systemfunktionen.
 
 ---
 
@@ -352,6 +475,13 @@ flowchart TD
     C -->|Broadcast| G["Systemnachricht senden"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: kein Zugriff.
+- `Admin`: kein Zugriff (WG-Admin ist nicht automatisch System-Admin).
+- `New User`: kein Zugriff.
+- `Super Admin`: vollständiger Zugriff auf globale Verwaltungsfunktionen.
+
 ---
 
 ## 18. Fixkosten (`RECURRING_COSTS`)
@@ -365,6 +495,13 @@ flowchart TD
     D --> F["Anteil pro Person berechnen"]
     E --> F
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: sieht Kostenstruktur und den eigenen Anteil.
+- `Admin`: pflegt Fixkosten aktiv und steuert die Verteilung.
+- `New User`: erst nutzbar nach WG-Zuweisung.
+- `Super Admin`: kann Kostenmechanik je WG über Impersonation kontrollieren.
 
 ---
 
@@ -381,6 +518,13 @@ flowchart TD
     F --> G
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: sieht das Ranking und kann soziale Interaktionen (Kudos/Shame) auslösen.
+- `Admin`: nutzt denselben Screen und kann zusätzlich moderierend eingreifen.
+- `New User`: hat vor WG-Beitritt keine aktive Ranking-Teilnahme.
+- `Super Admin`: kann WG-Dynamik über Impersonation analysieren.
+
 ---
 
 ## 20. Gäste-Pass (`GUEST_PASS`)
@@ -394,6 +538,13 @@ flowchart TD
     C -->|Löschen| F["Pass entfernen"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: kann Gästezugänge im Rahmen der WG-Regeln nutzen/teilen.
+- `Admin`: verwaltet Gäste-Pässe zentral (Erstellen, Widerrufen, Entfernen).
+- `New User`: ohne WG kein Gäste-Pass-Kontext vorhanden.
+- `Super Admin`: überprüft Prozesse über WG-Kontext oder Impersonation.
+
 ---
 
 ## 21. Smart Home (`SMART_HOME`)
@@ -405,6 +556,13 @@ flowchart TD
     C -->|Aktivieren| D["Benachrichtigung/Ticket erzeugen"]
     C -->|Deaktivieren| E["Status speichern"]
 ```
+
+### Rollen-Ablauf in diesem Screen
+
+- `User`: aktiviert/deaktiviert verfügbare Szenen im Alltag.
+- `Admin`: kann Szenenstruktur und Nutzung in der WG koordinieren.
+- `New User`: nutzt Smart-Home erst nach Eintritt in eine WG.
+- `Super Admin`: validiert Szenen-Logik über Systemsicht/Impersonation.
 
 ---
 
@@ -420,9 +578,23 @@ flowchart TD
     D -->|Nein| G["Fortschritt speichern"]
 ```
 
+### Rollen-Ablauf in diesem Screen
+
+- `User`: durchläuft Onboarding nur, wenn noch nicht abgeschlossen.
+- `Admin`: wird in der Regel schneller/fokussierter durch den Setup-Prozess geführt.
+- `New User`: ist die Hauptzielrolle dieses Screens (Pflichtpfad nach WG-Beitritt).
+- `Super Admin`: startet standardmäßig im `SYSTEM_PANEL` und nutzt Onboarding üblicherweise nicht.
+
 ---
 
 ## 23. Funktionalitäten nach Kategorien
+
+### Rollenbezug über alle Kategorien
+
+- `User`: Fokus auf tägliche WG-Nutzung (Aufgaben, Einkauf, Kommunikation, persönliche Einstellungen).
+- `Admin`: gleiche Basis wie `User`, plus operative Steuerung innerhalb der eigenen WG.
+- `New User`: Fokus auf Eintrittsprozess (`LOGIN` → `WG_FINDER` → `ONBOARDING`) vor Vollnutzung.
+- `Super Admin`: Fokus auf systemweite Governance, Support und Kontrolle über `SYSTEM_PANEL`.
 
 ### A) Benutzerverwaltung & Sicherheit
 - Muster-Login mit Demo-Accounts pro Rolle (User/Admin/Super Admin)
@@ -473,3 +645,4 @@ flowchart TD
 - Animierte Übergänge zwischen Screens
 - Emoji-basierte Kategorisierung
 - Responsive Layout mit Edge-to-Edge Support
+
