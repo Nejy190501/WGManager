@@ -19,6 +19,37 @@
 
 ---
 
+## Legende Diagramm-Stile
+
+```mermaid
+flowchart LR
+    UA["User action"]
+    SA["System action"]
+    UD{"User decision"}
+    SD{"System decision"}
+    BTN["BUTTON"]
+    INP["User input"]
+    SCR["Screen"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class UA userAction;
+    class SA systemAction;
+    class UD userDecision;
+    class SD systemDecision;
+    class BTN button;
+    class INP userInput;
+    class SCR screen;
+```
+
+---
+
 ## 1. Hauptablauf der App
 
 ```mermaid
@@ -54,10 +85,21 @@ flowchart TD
     V --> N
     M --> N
 
-    style A fill:#10b981,color:#fff
-    style N fill:#6366f1,color:#fff
-    style K fill:#ef4444,color:#fff
-    style I fill:#f59e0b,color:#fff
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class A,W userAction;
+    class B,C,D,E,H systemAction;
+    class O,S userDecision;
+    class G,J systemDecision;
+    class P,Q,R,U,V button;
+    class T userInput;
+    class F,I,K,L,M,N screen;
 ```
 
 ### Rollen-Ablauf in diesem Abschnitt
@@ -102,9 +144,20 @@ flowchart TD
     
     E --> P
 
-    style A fill:#f59e0b,color:#fff
-    style S fill:#6366f1,color:#fff
-    style Q fill:#ef4444,color:#fff
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class E userAction;
+    class F,G,H,I,L systemAction;
+    class B userDecision;
+    class J,M,P systemDecision;
+    class C,D,O userInput;
+    class A,K,N,Q,R,S screen;
 ```
 
 ### Rollen-Ablauf in diesem Abschnitt
@@ -157,8 +210,20 @@ flowchart TD
     E --> V["Vorrats-Status"]
     V --> W["Voll 🟢 / Niedrig 🟡 / Leer 🔴"]
 
-    style A fill:#6366f1,color:#fff
-    style L fill:#10b981,color:#fff
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class H,J,K,L,M,U,V,W systemAction;
+    class B,R userDecision;
+    class N systemDecision;
+    class F,I,Q,S,T button;
+    class G userInput;
+    class A,C,D,E screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -190,8 +255,19 @@ flowchart TD
     C -->|Anstupsen 👋| J["Erinnerung senden<br/>als Ticket"]
     C -->|Strike ⚡| K["-15 XP Punkte<br/>für faule Mitbewohner"]
 
-    style A fill:#6366f1,color:#fff
-    style E fill:#10b981,color:#fff
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class E,F,H systemAction;
+    class C userDecision;
+    class D,G,J,K button;
+    class I userInput;
+    class A,B screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -220,7 +296,19 @@ flowchart TD
     H -->|Event Details| K["Detail-Dialog anzeigen"]
     H -->|Vergangene löschen| L["Alte Events entfernen"]
 
-    style A fill:#6366f1,color:#fff
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,D,E,F,G,J systemAction;
+    class C,H userDecision;
+    class L button;
+    class I userInput;
+    class A,K screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -241,6 +329,19 @@ flowchart TD
     C --> D{"Session vorhanden?"}
     D -->|Ja| E["Profil laden"]
     D -->|Nein| F["Login-Screen"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class A userAction;
+    class B,C systemAction;
+    class D systemDecision;
+    class E,F screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -264,6 +365,20 @@ flowchart TD
     D --> F
     E --> G["Routing nach Rolle"]
     F --> G
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class F,G systemAction;
+    class B userDecision;
+    class E button;
+    class C,D userInput;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -288,6 +403,20 @@ flowchart TD
     F --> G
     E --> H["Warten auf Freigabe"]
     G --> I["Onboarding oder Dashboard"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,G,H systemAction;
+    class C userDecision;
+    class E,F button;
+    class D userInput;
+    class A,I screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -309,6 +438,19 @@ flowchart TD
     C -->|Putzplan| E["CLEANING"]
     C -->|Kalender| F["CALENDAR"]
     C -->|Profil| G["PROFILE"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E,F,G button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -329,6 +471,19 @@ flowchart TD
     C -->|Rolle ändern| D["Promote/Demote"]
     C -->|Join-Code| E["WG-Code teilen"]
     C -->|Anfragen| F["Beitrittsanfragen verwalten"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E,F button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -349,6 +504,19 @@ flowchart TD
     C --> D["Cook zuweisen"]
     D --> E["Zutatenliste erzeugen"]
     E --> F["Optional in Einkaufsliste übernehmen"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,E systemAction;
+    class C,D userAction;
+    class F button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -369,6 +537,20 @@ flowchart TD
     C -->|User| D["Einträge lesen/kopieren"]
     C -->|Admin/Super Admin| E["Eintrag hinzufügen/bearbeiten/löschen"]
     E --> F["Änderung speichern"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,F systemAction;
+    class C systemDecision;
+    class E button;
+    class D userAction;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -389,6 +571,19 @@ flowchart TD
     C -->|Einlösen| D["Punkte abziehen + Belohnung markieren"]
     C -->|Shop verwalten| E["Items anlegen/bearbeiten"]
     D --> F["Feedback anzeigen"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,F systemAction;
+    class C userDecision;
+    class D,E button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -408,6 +603,18 @@ flowchart TD
     B --> C["Tasks, Ausgaben, Top-Contributor"]
     C --> D["Charts rendern"]
     D --> E["Filter/Zeitraum anwenden"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,C,D systemAction;
+    class E button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -432,6 +639,19 @@ flowchart TD
     E --> G
     F --> G
     G --> H["Abstimmen / Status ändern"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,H systemAction;
+    class C userDecision;
+    class D,E,F,G button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -452,6 +672,19 @@ flowchart TD
     C -->|Theme/Sprache| D["Preferences aktualisieren"]
     C -->|Passwort| E["Passwort ändern"]
     C -->|Logout| F["Session beenden -> LOGIN"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E,F button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -473,6 +706,19 @@ flowchart TD
     C -->|Rollen ändern| E["Promote/Demote"]
     C -->|Maintenance| F["Wartungsmodus toggeln"]
     C -->|Broadcast| G["Systemnachricht senden"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E,F,G button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -494,6 +740,19 @@ flowchart TD
     C -->|Nein| E["Nur Übersicht"]
     D --> F["Anteil pro Person berechnen"]
     E --> F
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,E,F systemAction;
+    class C userDecision;
+    class D button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -516,6 +775,19 @@ flowchart TD
     D -->|Shame| F["-Punkte vergeben"]
     E --> G["Ranking neu berechnen"]
     F --> G
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,C,G systemAction;
+    class D userDecision;
+    class E,F button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -536,6 +808,19 @@ flowchart TD
     C -->|Erstellen| D["Gastname + WLAN"]
     C -->|Widerrufen| E["Pass deaktivieren"]
     C -->|Löschen| F["Pass entfernen"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E,F button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -555,6 +840,19 @@ flowchart TD
     B --> C{"Szene toggeln"}
     C -->|Aktivieren| D["Benachrichtigung/Ticket erzeugen"]
     C -->|Deaktivieren| E["Status speichern"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B systemAction;
+    class C userDecision;
+    class D,E button;
+    class A screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
@@ -576,6 +874,18 @@ flowchart TD
     D -->|Ja| E["onboardingCompleted = true"]
     E --> F["Weiter zu DASHBOARD"]
     D -->|Nein| G["Fortschritt speichern"]
+
+    classDef userAction fill:#ead1f2,stroke:#8e7cc3,color:#111;
+    classDef systemAction fill:#f9f4c7,stroke:#b7b26a,color:#111;
+    classDef userDecision fill:#f4cccc,stroke:#cc7a7a,color:#111;
+    classDef systemDecision fill:#fff2b2,stroke:#c9b458,color:#111;
+    classDef button fill:#f4a6a6,stroke:#c97b7b,color:#111;
+    classDef userInput fill:#f8d7da,stroke:#d49aa2,color:#111;
+    classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
+
+    class B,C,E,G systemAction;
+    class D systemDecision;
+    class A,F screen;
 ```
 
 ### Rollen-Ablauf in diesem Screen
