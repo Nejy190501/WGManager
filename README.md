@@ -1,6 +1,6 @@
 # WG Manager — Intelligente WG-Verwaltung
 
-> **Kurs:** Mobile Programmierung — HWR Berlin  
+> **Kurs:** App Entwicklung mit Android — HWR Berlin  
 > **Semester:** SoSe 2026  
 > **Dozent:** Prof. Holger Zimmermann
 
@@ -8,10 +8,11 @@
 
 ## Gruppenmitglieder
 
-| Name               | Matrikelnummer |
-| ------------------ | -------------- |
-| Yves E.            | XXXXXX         |
-| *(Weitere hier)*   | XXXXXX         |
+Das Projekt wurde von den folgenden Studierenden entwickelt:
+
+Jean Yves Nkwane Ebongue - Matrikelnummer: 77201393552
+
+Samed Cevat Ünal - Matrikelnummer: xxxxxxxxxx
 
 ---
 
@@ -59,20 +60,6 @@ Die App ermöglicht Mitbewohnern, alle organisatorischen Aspekte des Zusammenleb
 | Min. Android-Version    | API 26 (Android 8.0)                       |
 | Build-System            | Gradle (Kotlin DSL), AGP 9.0.0            |
 
-### Datenbankarchitektur (Doppelte Datenschicht)
-
-```
-┌───────────────┐     ┌──────────────────────────────────┐     ┌────────────────┐
-│  UI (Compose) │◄───►│  DataStore (In-Memory Singleton) │◄───►│  FirebaseSync  │
-│   20 Screens  │     │  Zentrale Wahrheitsquelle        │     │  (Cloud-DB)    │
-└───────────────┘     └──────────────┬───────────────────┘     └────────────────┘
-                                     │
-                                     ▼
-                              ┌──────────────┐
-                              │ LocalDatabase │
-                              │ (SQLite-Cache)│
-                              └──────────────┘
-```
 
 **Ablauf:**
 1. Beim App-Start werden Daten von **Firebase** geladen (Cloud)
@@ -180,7 +167,14 @@ Siehe [ABLAUFDIAGRAMM.md](ABLAUFDIAGRAMM.md) für das vollständige Ablaufdiagra
 
 ---
 
-## Lizenz
+## Quellen
 
-Dieses Projekt wurde im Rahmen der Lehrveranstaltung „Mobile Programmierung" an der HWR Berlin erstellt.
- 
+- https://michaelkipp.de/android/intro.html
+- https://michaelkipp.de/android/erste-app.html
+- https://developer.android.com/kotlin?hl=de
+- https://kotlinlang.org/
+- https://www.imaginarycloud.com/blog/kotlin-vs-java#:~:text=Kotlin%20is%20more%20modern%2C%20with,depends%20on%20your%20project%20needs.
+- KI als Unterstützung bei der Fehlersuche (ChatGPT, Google Gemini)
+- https://aistudio.google.com/
+- https://www.youtube.com/playlist?list=PLYx38U7gxBf3pmsHVTUwRT_lGON6ZIBHi
+- https://www.youtube.com/watch?v=N8p7IJiwSLA
