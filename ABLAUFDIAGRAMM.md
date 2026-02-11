@@ -1253,6 +1253,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
+    RLQ{"Rolle?"}
+    RLQ -->|User| A
+    RLQ -->|Admin| RX["Siehe Kapitel 25"]
+    RLQ -->|New User| RY["Siehe Kapitel 26"]
+    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
+
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
     C -->|Ja| D["DASHBOARD"]
@@ -1280,8 +1286,9 @@ flowchart TD
     class A userAction;
     class B,F systemAction;
     class N userDecision;
-    class C systemDecision;
+    class C,RLQ systemDecision;
     class D,E,G,H,I,J,K,L,M screen;
+    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1292,6 +1299,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
+    RLQ{"Rolle?"}
+    RLQ -->|User| RX["Siehe Kapitel 24"]
+    RLQ -->|Admin| A
+    RLQ -->|New User| RY["Siehe Kapitel 26"]
+    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
+
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
     C -->|Ja| D["DASHBOARD"]
@@ -1324,8 +1337,9 @@ flowchart TD
     class A userAction;
     class B,F,S,T,U systemAction;
     class N,R userDecision;
-    class C systemDecision;
+    class C,RLQ systemDecision;
     class D,E,G,H,I,J,K,L,M screen;
+    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1336,6 +1350,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
+    RLQ{"Rolle?"}
+    RLQ -->|User| RX["Siehe Kapitel 24"]
+    RLQ -->|Admin| RY["Siehe Kapitel 25"]
+    RLQ -->|New User| A
+    RLQ -->|Super Admin| RZ["Siehe Kapitel 27"]
+
     A["App-Start"] --> B["SPLASH"]
     B --> C["LOGIN / REGISTRIERUNG"]
     C --> D["Authentifizierung erfolgreich"]
@@ -1367,10 +1387,11 @@ flowchart TD
     class A userAction;
     class D,K systemAction;
     class F userDecision;
-    class J,M systemDecision;
+    class J,M,RLQ systemDecision;
     class G button;
     class C,H,I userInput;
     class B,E,L,N screen;
+    class RX,RY,RZ systemAction;
 ```
 
 ---
@@ -1381,6 +1402,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
+    RLQ{"Rolle?"}
+    RLQ -->|User| RX["Siehe Kapitel 24"]
+    RLQ -->|Admin| RY["Siehe Kapitel 25"]
+    RLQ -->|New User| RZ["Siehe Kapitel 26"]
+    RLQ -->|Super Admin| A
+
     A["App-Start"] --> B["SPLASH"]
     B --> C{"Session vorhanden?"}
     C -->|Ja| D["SYSTEM_PANEL"]
@@ -1408,9 +1435,9 @@ flowchart TD
     classDef screen fill:#cfe2f3,stroke:#6c8ebf,color:#111;
 
     class A userAction;
-    class B,F,H,I,J systemAction;
+    class B,F,H,I,J,RX,RY,RZ systemAction;
     class G,M userDecision;
-    class C systemDecision;
+    class C,RLQ systemDecision;
     class K button;
     class D,E,L,N,O screen;
 ```
