@@ -12,34 +12,34 @@
 
 ```mermaid
 flowchart TD
-    A([App-Start]) --> B[Lokale DB initialisieren<br/>SQLite Offline-Cache]
-    B --> C[Firebase-Daten laden<br/>(wenn verfügbar)]
-    C -->|Erfolg| D[Daten in SQLite cachen]
-    C -->|Fehler| E[SQLite-Cache/Mock-Daten laden<br/>Demo-/Offline-Modus]
-    D --> F[Splash-Screen]
+    A(["App-Start"]) --> B["Lokale DB initialisieren<br/>SQLite Offline-Cache"]
+    B --> C["Firebase-Daten laden<br/>(wenn verfügbar)"]
+    C -->|Erfolg| D["Daten in SQLite cachen"]
+    C -->|Fehler| E["SQLite-Cache/Mock-Daten laden<br/>Demo-/Offline-Modus"]
+    D --> F["Splash-Screen"]
     E --> F
-    F --> G{Session vorhanden?<br/>(Firebase/Local)}
-    G -->|Ja| H[Profil laden]
-    G -->|Nein| I[Login-Screen]
-    H --> J{Benutzer-Status?}
+    F --> G{"Session vorhanden?<br/>(Firebase/Local)"}
+    G -->|Ja| H["Profil laden"]
+    G -->|Nein| I["Login-Screen"]
+    H --> J{"Benutzer-Status?"}
     J -->|Gesperrt| I
-    J -->|Super Admin| K[System-Panel]
-    J -->|Keine WG| L[WG-Finder]
-    J -->|Onboarding nötig| M[Onboarding]
-    J -->|Normal| N[Dashboard]
-    I --> O{Login oder<br/>Registrierung?}
-    O -->|Login| P[Login mit Muster-Account<br/>(Firebase Auth teilweise)]
-    O -->|Registrieren| Q[Registrierung<br/>(Firebase Auth teilweise)]
-    O -->|Demo| R[Musterdaten-Login]
+    J -->|Super Admin| K["System-Panel"]
+    J -->|Keine WG| L["WG-Finder"]
+    J -->|Onboarding nötig| M["Onboarding"]
+    J -->|Normal| N["Dashboard"]
+    I --> O{"Login oder<br/>Registrierung?"}
+    O -->|Login| P["Login mit Muster-Account<br/>(Firebase Auth teilweise)"]
+    O -->|Registrieren| Q["Registrierung<br/>(Firebase Auth teilweise)"]
+    O -->|Demo| R["Musterdaten-Login"]
     P --> H
     Q --> H
     R --> N
-    L --> S{WG beitreten<br/>oder erstellen?}
-    S -->|Beitreten per Code| T[WG-Code eingeben]
-    S -->|Anfrage senden| U[Beitrittsanfrage]
-    S -->|Neue WG erstellen| V[WG erstellen]
+    L --> S{"WG beitreten<br/>oder erstellen?"}
+    S -->|Beitreten per Code| T["WG-Code eingeben"]
+    S -->|Anfrage senden| U["Beitrittsanfrage"]
+    S -->|Neue WG erstellen| V["WG erstellen"]
     T --> N
-    U --> W[Warten auf Genehmigung]
+    U --> W["Warten auf Genehmigung"]
     V --> N
     M --> N
 
@@ -55,11 +55,11 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    UI[UI-Layer<br/>20 Compose-Screens] <-->|liest/schreibt| DS[DataStore<br/>In-Memory Singleton]
-    DS <-->|Optionaler Cloud-Sync| FB[(Firebase<br/>Realtime DB)]
-    DS <-->|Offline-Cache| SQ[(SQLite<br/>LocalDatabase)]
-    DS --> AUTH[Login-Manager<br/>(Muster-Accounts/Firebase)]
-    AUTH <--> FBA[(Firebase<br/>Authentication - teilweise)]
+    UI["UI-Layer<br/>20 Compose-Screens"] <-->|liest/schreibt| DS["DataStore<br/>In-Memory Singleton"]
+    DS <-->|Optionaler Cloud-Sync| FB[("Firebase<br/>Realtime DB")]
+    DS <-->|Offline-Cache| SQ[("SQLite<br/>LocalDatabase")]
+    DS --> AUTH["Login-Manager<br/>(Muster-Accounts/Firebase)"]
+    AUTH <--> FBA[("Firebase<br/>Authentication - teilweise")]
 
     style UI fill:#818cf8,color:#fff
     style DS fill:#10b981,color:#fff
@@ -81,32 +81,32 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[Login-Screen] --> B{Modus?}
-    B -->|Login| C[Email + Passwort eingeben]
-    B -->|Registrierung| D[Name + Email + Passwort]
-    B -->|Demo| E[Muster-User laden]
+    A["Login-Screen"] --> B{"Modus?"}
+    B -->|Login| C["Email + Passwort eingeben"]
+    B -->|Registrierung| D["Name + Email + Passwort"]
+    B -->|Demo| E["Muster-User laden"]
     
-    C --> F[FirebaseAuthManager.login<br/>(teilweise)]
-    F -->|Erfolg| G[loadOrCreateUserProfile]
-    F -->|Fehler| H[Fehlermeldung anzeigen]
+    C --> F["FirebaseAuthManager.login<br/>(teilweise)"]
+    F -->|Erfolg| G["loadOrCreateUserProfile"]
+    F -->|Fehler| H["Fehlermeldung anzeigen"]
     
-    D --> I[FirebaseAuthManager.register<br/>(teilweise)]
+    D --> I["FirebaseAuthManager.register<br/>(teilweise)"]
     I -->|Erfolg| G
     I -->|Fehler| H
     
-    G --> J{Profil in DB?}
-    J -->|Ja| K[Profil laden]
-    J -->|Nein| L[Neues Profil erstellen<br/>in SQLite (optional Firebase)]
+    G --> J{"Profil in DB?"}
+    J -->|Ja| K["Profil laden"]
+    J -->|Nein| L["Neues Profil erstellen<br/>in SQLite (optional Firebase)"]
     
-    K --> M{2FA aktiviert?}
-    L --> N[WG-Finder]
-    M -->|Ja| O[2FA-Code eingeben]
-    M -->|Nein| P{Routing-Logik}
+    K --> M{"2FA aktiviert?"}
+    L --> N["WG-Finder"]
+    M -->|Ja| O["2FA-Code eingeben"]
+    M -->|Nein| P{"Routing-Logik"}
     O -->|Korrekt| P
-    P -->|Super Admin| Q[System-Panel]
+    P -->|Super Admin| Q["System-Panel"]
     P -->|Keine WG| N
-    P -->|Onboarding| R[Onboarding]
-    P -->|Normal| S[Dashboard]
+    P -->|Onboarding| R["Onboarding"]
+    P -->|Normal| S["Dashboard"]
     
     E --> P
 
@@ -130,33 +130,33 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Shopping-Screen] --> B{Tab-Auswahl}
-    B -->|Liste 📋| C[Einkaufsliste]
-    B -->|Bilanz 💰| D[Finanzübersicht]
-    B -->|Vorrat 📦| E[Vorratskammer]
+    A["Shopping-Screen"] --> B{"Tab-Auswahl"}
+    B -->|Liste 📋| C["Einkaufsliste"]
+    B -->|Bilanz 💰| D["Finanzübersicht"]
+    B -->|Vorrat 📦| E["Vorratskammer"]
     
-    C --> F[Artikel hinzufügen]
-    F --> G[Name + Preis + Emoji]
-    G --> H[In SQLite speichern<br/>optional Firebase-Sync]
+    C --> F["Artikel hinzufügen"]
+    F --> G["Name + Preis + Emoji"]
+    G --> H["In SQLite speichern<br/>optional Firebase-Sync"]
     
-    C --> I[Als gekauft markieren]
-    I --> J[boughtBy = aktueller User]
-    J --> K[Bilanz neu berechnen]
+    C --> I["Als gekauft markieren"]
+    I --> J["boughtBy = aktueller User"]
+    J --> K["Bilanz neu berechnen"]
     
-    D --> L[Faire Kostenaufteilung]
-    L --> M[Gesamtausgaben ÷ Mitglieder]
-    M --> N{Bilanz pro Person}
-    N -->|Positiv| O[💚 Guthaben]
-    N -->|Negativ| P[❤️ Schulden]
-    P --> Q[Schulden begleichen]
-    Q --> R{Einzeln oder alle?}
-    R -->|Einzeln| S[Nur Items des Gläubigers löschen]
-    R -->|Alle| T[Alle gekauften Items löschen]
-    S --> U[SQLite aktualisieren<br/>optional Firebase-Sync]
+    D --> L["Faire Kostenaufteilung"]
+    L --> M["Gesamtausgaben ÷ Mitglieder"]
+    M --> N{"Bilanz pro Person"}
+    N -->|Positiv| O["💚 Guthaben"]
+    N -->|Negativ| P["❤️ Schulden"]
+    P --> Q["Schulden begleichen"]
+    Q --> R{"Einzeln oder alle?"}
+    R -->|Einzeln| S["Nur Items des Gläubigers löschen"]
+    R -->|Alle| T["Alle gekauften Items löschen"]
+    S --> U["SQLite aktualisieren<br/>optional Firebase-Sync"]
     T --> U
     
-    E --> V[Vorrats-Status]
-    V --> W[Voll 🟢 / Niedrig 🟡 / Leer 🔴]
+    E --> V["Vorrats-Status"]
+    V --> W["Voll 🟢 / Niedrig 🟡 / Leer 🔴"]
 
     style A fill:#6366f1,color:#fff
     style L fill:#10b981,color:#fff
@@ -168,21 +168,21 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Cleaning-Screen] --> B[Aufgaben anzeigen<br/>gruppiert nach Person]
-    B --> C{Aktion?}
-    C -->|Erledigt ✅| D[Task umschalten]
-    D --> E[+10 XP Punkte<br/>Streak erhöhen]
-    E --> F[SQLite + optional Firebase-Sync]
+    A["Cleaning-Screen"] --> B["Aufgaben anzeigen<br/>gruppiert nach Person"]
+    B --> C{"Aktion?"}
+    C -->|Erledigt ✅| D["Task umschalten"]
+    D --> E["+10 XP Punkte<br/>Streak erhöhen"]
+    E --> F["SQLite + optional Firebase-Sync"]
     
-    C -->|Rotation 🔄| G[Aufgaben rotieren]
-    G --> H[Jeder bekommt die<br/>nächste Aufgabe]
+    C -->|Rotation 🔄| G["Aufgaben rotieren"]
+    G --> H["Jeder bekommt die<br/>nächste Aufgabe"]
     H --> F
     
-    C -->|Neue Aufgabe| I[Titel + Zuweisen]
+    C -->|Neue Aufgabe| I["Titel + Zuweisen"]
     I --> F
     
-    C -->|Anstupsen 👋| J[Erinnerung senden<br/>als Ticket]
-    C -->|Strike ⚡| K[-15 XP Punkte<br/>für faule Mitbewohner]
+    C -->|Anstupsen 👋| J["Erinnerung senden<br/>als Ticket"]
+    C -->|Strike ⚡| K["-15 XP Punkte<br/>für faule Mitbewohner"]
 
     style A fill:#6366f1,color:#fff
     style E fill:#10b981,color:#fff
@@ -194,18 +194,18 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Calendar-Screen] --> B[Events nach Datum sortiert]
-    B --> C{Filter?}
-    C -->|Alle| D[Alle Events]
-    C -->|Party 🎉| E[Nur Party-Events]
-    C -->|Ruhe 🤫| F[Nur Ruhezeiten]
-    C -->|Besuch 👨‍👩‍👦| G[Nur Besuche]
+    A["Calendar-Screen"] --> B["Events nach Datum sortiert"]
+    B --> C{"Filter?"}
+    C -->|Alle| D["Alle Events"]
+    C -->|Party 🎉| E["Nur Party-Events"]
+    C -->|Ruhe 🤫| F["Nur Ruhezeiten"]
+    C -->|Besuch 👨‍👩‍👦| G["Nur Besuche"]
     
-    D --> H{Aktion?}
-    H -->|Neues Event| I[Titel + Datum + Typ]
-    I --> J[In SQLite speichern<br/>optional Firebase-Sync]
-    H -->|Event Details| K[Detail-Dialog anzeigen]
-    H -->|Vergangene löschen| L[Alte Events entfernen]
+    D --> H{"Aktion?"}
+    H -->|Neues Event| I["Titel + Datum + Typ"]
+    I --> J["In SQLite speichern<br/>optional Firebase-Sync"]
+    H -->|Event Details| K["Detail-Dialog anzeigen"]
+    H -->|Vergangene löschen| L["Alte Events entfernen"]
 
     style A fill:#6366f1,color:#fff
 ```
@@ -367,4 +367,3 @@ erDiagram
 - Animierte Übergänge zwischen Screens
 - Emoji-basierte Kategorisierung
 - Responsive Layout mit Edge-to-Edge Support
-
