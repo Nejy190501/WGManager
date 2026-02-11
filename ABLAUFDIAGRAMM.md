@@ -186,66 +186,243 @@ flowchart TD
 
 ---
 
-## 6. Alle 20 Screens
-
-### Diagramm (alle Screens)
+## 6. Splash (`SPLASH`)
 
 ```mermaid
-flowchart TB
-    APP["WG Manager App"]
-
-    APP --> S01["1. Splash (SPLASH)"]
-    APP --> S02["2. Login (LOGIN)"]
-    APP --> S03["3. WG-Finder (WG_FINDER)"]
-    APP --> S04["4. Dashboard (DASHBOARD)"]
-    APP --> S05["5. Einkauf (SHOPPING)"]
-    APP --> S06["6. Putzplan (CLEANING)"]
-    APP --> S07["7. Crew (CREW)"]
-    APP --> S08["8. Kalender (CALENDAR)"]
-    APP --> S09["9. Essensplan (MEAL_PLANNER)"]
-    APP --> S10["10. Tresor (VAULT)"]
-    APP --> S11["11. Belohnungen (REWARDS)"]
-    APP --> S12["12. Analytics (ANALYTICS)"]
-    APP --> S13["13. Schwarzes Brett (BLACKBOARD)"]
-    APP --> S14["14. Profil (PROFILE)"]
-    APP --> S15["15. System-Panel (SYSTEM_PANEL)"]
-    APP --> S16["16. Fixkosten (RECURRING_COSTS)"]
-    APP --> S17["17. Wall of Fame (WALL_OF_FAME)"]
-    APP --> S18["18. Gäste-Pass (GUEST_PASS)"]
-    APP --> S19["19. Smart Home (SMART_HOME)"]
-    APP --> S20["20. Onboarding (ONBOARDING)"]
-
-    style APP fill:#10b981,color:#fff
+flowchart TD
+    A["App-Start"] --> B["Splash anzeigen"]
+    B --> C["Session prüfen"]
+    C --> D{"Session vorhanden?"}
+    D -->|Ja| E["Profil laden"]
+    D -->|Nein| F["Login-Screen"]
 ```
-
-### Tabelle (Navigation)
-
-| Nr. | Screen             | Enum-Wert         | Beschreibung                                    |
-| --- | ------------------ | ----------------- | ----------------------------------------------- |
-| 1   | Splash             | `SPLASH`          | Ladebildschirm mit Animation                    |
-| 2   | Login              | `LOGIN`           | Anmeldung / Registrierung / 2FA + Muster-Accounts |
-| 3   | WG-Finder          | `WG_FINDER`       | WG suchen, beitreten oder erstellen              |
-| 4   | Dashboard          | `DASHBOARD`       | Hauptseite: Status, Quick-Actions, Events        |
-| 5   | Einkauf            | `SHOPPING`        | Einkaufsliste, Bilanz, Vorratskammer             |
-| 6   | Putzplan           | `CLEANING`        | Aufgaben-Verwaltung mit Rotation & XP            |
-| 7   | Crew               | `CREW`            | Mitglieder-Liste, Rollen, WG-Details             |
-| 8   | Kalender           | `CALENDAR`        | Gemeinsamer Kalender mit Event-Typen             |
-| 9   | Essensplan         | `MEAL_PLANNER`    | Wochenplan + Rezepte + Auto-Einkaufsliste        |
-| 10  | Tresor             | `VAULT`           | WiFi, IBAN, Codes — verschlüsselte Ansicht       |
-| 11  | Belohnungen        | `REWARDS`         | Punkte-Shop für WG-Vorteile                      |
-| 12  | Analytics          | `ANALYTICS`       | Statistiken und Diagramme                        |
-| 13  | Schwarzes Brett    | `BLACKBOARD`      | Beschwerden, Lob, Umfragen                       |
-| 14  | Profil             | `PROFILE`         | Persönliche Einstellungen, Theme, Sprache         |
-| 15  | System-Panel       | `SYSTEM_PANEL`    | Super-Admin: alle WGs verwalten                  |
-| 16  | Fixkosten          | `RECURRING_COSTS` | Monatliche Kosten aufteilen                      |
-| 17  | Wall of Fame       | `WALL_OF_FAME`    | Leaderboard + Kudos/Shame                        |
-| 18  | Gäste-Pass         | `GUEST_PASS`      | Zugangs-Codes für Besucher                       |
-| 19  | Smart Home         | `SMART_HOME`      | Szenen-Steuerung (Movie Night etc.)              |
-| 20  | Onboarding         | `ONBOARDING`      | Geführte Schritte für Neue                       |
 
 ---
 
-## 7. Funktionalitäten nach Kategorien
+## 7. Login (`LOGIN`)
+
+```mermaid
+flowchart TD
+    A["Login-Screen"] --> B{"Modus"}
+    B -->|Login| C["Email + Passwort"]
+    B -->|Registrierung| D["Name + Email + Passwort"]
+    B -->|Demo| E["Muster-Account wählen"]
+    C --> F["Authentifizieren"]
+    D --> F
+    E --> G["Routing nach Rolle"]
+    F --> G
+```
+
+---
+
+## 8. WG-Finder (`WG_FINDER`)
+
+```mermaid
+flowchart TD
+    A["WG-Finder öffnen"] --> B["Öffentliche WGs laden"]
+    B --> C{"Aktion?"}
+    C -->|Code| D["WG-Code eingeben"]
+    C -->|Anfrage| E["Beitrittsanfrage senden"]
+    C -->|Erstellen| F["Neue WG erstellen"]
+    D --> G["WG zuweisen"]
+    F --> G
+    E --> H["Warten auf Freigabe"]
+    G --> I["Onboarding oder Dashboard"]
+```
+
+---
+
+## 9. Dashboard (`DASHBOARD`)
+
+```mermaid
+flowchart TD
+    A["Dashboard"] --> B["Status + Quick-Actions"]
+    B --> C{"Navigation"}
+    C -->|Einkauf| D["SHOPPING"]
+    C -->|Putzplan| E["CLEANING"]
+    C -->|Kalender| F["CALENDAR"]
+    C -->|Profil| G["PROFILE"]
+```
+
+---
+
+## 10. Crew (`CREW`)
+
+```mermaid
+flowchart TD
+    A["Crew-Screen"] --> B["Mitglieder + Rollen anzeigen"]
+    B --> C{"Admin-Aktion?"}
+    C -->|Rolle ändern| D["Promote/Demote"]
+    C -->|Join-Code| E["WG-Code teilen"]
+    C -->|Anfragen| F["Beitrittsanfragen verwalten"]
+```
+
+---
+
+## 11. Essensplan (`MEAL_PLANNER`)
+
+```mermaid
+flowchart TD
+    A["Essensplan-Screen"] --> B["Wochenplan anzeigen"]
+    B --> C["Rezept auswählen"]
+    C --> D["Cook zuweisen"]
+    D --> E["Zutatenliste erzeugen"]
+    E --> F["Optional in Einkaufsliste übernehmen"]
+```
+
+---
+
+## 12. Tresor (`VAULT`)
+
+```mermaid
+flowchart TD
+    A["Vault öffnen"] --> B["Einträge anzeigen"]
+    B --> C{"Rolle?"}
+    C -->|User| D["Einträge lesen/kopieren"]
+    C -->|Admin/Super Admin| E["Eintrag hinzufügen/bearbeiten/löschen"]
+    E --> F["Änderung speichern"]
+```
+
+---
+
+## 13. Belohnungen (`REWARDS`)
+
+```mermaid
+flowchart TD
+    A["Rewards-Screen"] --> B["Punktestand + Items"]
+    B --> C{"Aktion?"}
+    C -->|Einlösen| D["Punkte abziehen + Belohnung markieren"]
+    C -->|Shop verwalten| E["Items anlegen/bearbeiten"]
+    D --> F["Feedback anzeigen"]
+```
+
+---
+
+## 14. Analytics (`ANALYTICS`)
+
+```mermaid
+flowchart TD
+    A["Analytics-Screen"] --> B["KPIs berechnen"]
+    B --> C["Tasks, Ausgaben, Top-Contributor"]
+    C --> D["Charts rendern"]
+    D --> E["Filter/Zeitraum anwenden"]
+```
+
+---
+
+## 15. Schwarzes Brett (`BLACKBOARD`)
+
+```mermaid
+flowchart TD
+    A["Blackboard-Screen"] --> B["Tickets/Umfragen laden"]
+    B --> C{"Neu erstellen?"}
+    C -->|Beschwerde| D["Complaint erstellen"]
+    C -->|Lob| E["Kudos erstellen"]
+    C -->|Umfrage| F["Poll mit Optionen"]
+    D --> G["Veröffentlichen"]
+    E --> G
+    F --> G
+    G --> H["Abstimmen / Status ändern"]
+```
+
+---
+
+## 16. Profil (`PROFILE`)
+
+```mermaid
+flowchart TD
+    A["Profile-Screen"] --> B["Konto + Einstellungen"]
+    B --> C{"Aktion?"}
+    C -->|Theme/Sprache| D["Preferences aktualisieren"]
+    C -->|Passwort| E["Passwort ändern"]
+    C -->|Logout| F["Session beenden -> LOGIN"]
+```
+
+---
+
+## 17. System-Panel (`SYSTEM_PANEL`)
+
+```mermaid
+flowchart TD
+    A["System-Panel"] --> B["Alle WGs/Users laden"]
+    B --> C{"Super-Admin Aktion"}
+    C -->|Impersonation| D["Als User einloggen"]
+    C -->|Rollen ändern| E["Promote/Demote"]
+    C -->|Maintenance| F["Wartungsmodus toggeln"]
+    C -->|Broadcast| G["Systemnachricht senden"]
+```
+
+---
+
+## 18. Fixkosten (`RECURRING_COSTS`)
+
+```mermaid
+flowchart TD
+    A["Fixkosten-Screen"] --> B["Monatliche Kostenliste"]
+    B --> C{"Admin?"}
+    C -->|Ja| D["Kosten hinzufügen/bearbeiten/löschen"]
+    C -->|Nein| E["Nur Übersicht"]
+    D --> F["Anteil pro Person berechnen"]
+    E --> F
+```
+
+---
+
+## 19. Wall of Fame (`WALL_OF_FAME`)
+
+```mermaid
+flowchart TD
+    A["Wall-of-Fame-Screen"] --> B["Scores berechnen"]
+    B --> C["Ranking anzeigen"]
+    C --> D{"Aktion?"}
+    D -->|Kudos| E["+Punkte vergeben"]
+    D -->|Shame| F["-Punkte vergeben"]
+    E --> G["Ranking neu berechnen"]
+    F --> G
+```
+
+---
+
+## 20. Gäste-Pass (`GUEST_PASS`)
+
+```mermaid
+flowchart TD
+    A["Guest-Pass-Screen"] --> B["Aktive Pässe anzeigen"]
+    B --> C{"Aktion?"}
+    C -->|Erstellen| D["Gastname + WLAN"]
+    C -->|Widerrufen| E["Pass deaktivieren"]
+    C -->|Löschen| F["Pass entfernen"]
+```
+
+---
+
+## 21. Smart Home (`SMART_HOME`)
+
+```mermaid
+flowchart TD
+    A["Smart-Home-Screen"] --> B["Szenen anzeigen"]
+    B --> C{"Szene toggeln"}
+    C -->|Aktivieren| D["Benachrichtigung/Ticket erzeugen"]
+    C -->|Deaktivieren| E["Status speichern"]
+```
+
+---
+
+## 22. Onboarding (`ONBOARDING`)
+
+```mermaid
+flowchart TD
+    A["Onboarding starten"] --> B["Schritte laden"]
+    B --> C["Regeln / IBAN / Putz-Tag / Avatar / Intro"]
+    C --> D{"Alles erledigt?"}
+    D -->|Ja| E["onboardingCompleted = true"]
+    E --> F["Weiter zu DASHBOARD"]
+    D -->|Nein| G["Fortschritt speichern"]
+```
+
+---
+
+## 23. Funktionalitäten nach Kategorien
 
 ### A) Benutzerverwaltung & Sicherheit
 - Muster-Login mit Demo-Accounts pro Rolle (User/Admin/Super Admin)
@@ -296,4 +473,3 @@ flowchart TB
 - Animierte Übergänge zwischen Screens
 - Emoji-basierte Kategorisierung
 - Responsive Layout mit Edge-to-Edge Support
-
